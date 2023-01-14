@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    
+    // Projectiles
     public GameObject playerProjectile;
-    public float projectileSpeed = 0;
-    public GameObject playerAttackPoint;
-    public GameObject playerMeleeHitBox;
 
     private const float MAX_FLOW_SPEED = 4;
     private const float MAX_ROCK_SPEED = 2;
@@ -17,8 +14,6 @@ public class PlayerController : MonoBehaviour
     private PlayerScript player;
     private Animator animator;
     private Camera mainCam;
-    private float meleeAttackTimer;
-    private const float MAX_ATTACK_COOLDOWN = 0.5f;
 
     void Start()
     {
@@ -38,7 +33,7 @@ public class PlayerController : MonoBehaviour
                 player.ChangeAttackMode(PlayerScript.AttackMode.Rock);
                 speed = MAX_ROCK_SPEED;
             }
-            else
+            else if (player.getAttackMode() == PlayerScript.AttackMode.Rock)
             {
                 player.ChangeAttackMode(PlayerScript.AttackMode.Flow);
                 speed = MAX_FLOW_SPEED;
@@ -46,11 +41,22 @@ public class PlayerController : MonoBehaviour
 
             Debug.Log("Mode Change");
         }
-        if (Input.GetKeyDown("space"))
+        else if (Input.GetKeyDown("e"))
         {
             if (player.getAttackMode() == PlayerScript.AttackMode.Flow)
             {
-                GameObject projectile = Instantiate(playerProjectile, transform);
+                player.DashAttack();
+            }
+            else if (player.getAttackMode() == PlayerScript.AttackMode.Rock)
+            {
+                
+            }
+        }
+        else if (Input.GetKeyDown("space"))
+        {
+            if (player.getAttackMode() == PlayerScript.AttackMode.Flow)
+            {
+                GameObject projectile = Instantiate(playerProjectile);
 
                 // Rotation Logic for the projectile
                 Vector3 mousePosition = mainCam.ScreenToWorldPoint(Input.mousePosition);
@@ -61,12 +67,11 @@ public class PlayerController : MonoBehaviour
                 // Direction
                 Vector2 projectileDirection = new Vector3(direction.x, direction.y).normalized * speed;
 
-                projectile.GetComponent<ProjectileScript>().ReadyProjectile(projectileSpeed, projectileDirection, projectileRotation);
+                projectile.GetComponent<ProjectileScript>().ReadyProjectile( transform.position, projectileDirection, projectileRotation);
             }
             else if (player.getAttackMode() == PlayerScript.AttackMode.Rock)
             {
-                playerMeleeHitBox.gameObject.SetActive(true);
-                meleeAttackTimer = MAX_ATTACK_COOLDOWN;
+                player.MeleeAttack();
             }
 
             Debug.Log("Attack");
@@ -74,37 +79,22 @@ public class PlayerController : MonoBehaviour
 
 
         // Movement
-        float xMove = Input.GetAxisRaw("Horizontal");
-        float zMove = Input.GetAxisRaw("Vertical");
-
-        rb.velocity = new Vector2(xMove, zMove) * speed;
-
-        // State Changing for movement 
-        if (xMove != 0 || zMove != 0)
+        if (player.getDashing() == false)
         {
-            animator.SetBool("Running", true);
-        }
-        else
-        {
-            animator.SetBool("Running", false);
-        }
+            float xMove = Input.GetAxisRaw("Horizontal");
+            float zMove = Input.GetAxisRaw("Vertical");
 
-        // Changes attakc point depending on direction
-        float range = 0.5f;
-        Vector3 attackDirection;
+            rb.velocity = new Vector2(xMove, zMove) * speed;
 
-        if (playerMeleeHitBox.gameObject.active == false)
-        {
-            //Vector3 mousePosition = mainCam.ScreenToWorldPoint(Input.mousePosition);
-            //attackDirection = mousePosition - player.transform.position;
-            //playerMeleeHitBox.transform.position = playerAttackPoint.transform.position + (attackDirection.normalized * range);
-        }
-
-        // Cooldown Timers
-        meleeAttackTimer -= Time.deltaTime;
-        if (meleeAttackTimer <= 0.0f)
-        {
-            playerMeleeHitBox.gameObject.SetActive(false);
+            // State Changing for movement 
+            if (xMove != 0 || zMove != 0)
+            {
+                animator.SetBool("Running", true);
+            }
+            else
+            {
+                animator.SetBool("Running", false);
+            }
         }
     }
 }

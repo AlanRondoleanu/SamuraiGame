@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ProjectileScript : MonoBehaviour
 {
-    private float speed;
+    private const float PROJECTILE_SPEED = 20;
     private Vector2 direction;
 
     // Start is called before the first frame update
@@ -19,12 +19,12 @@ public class ProjectileScript : MonoBehaviour
         
     }
 
-    public void ReadyProjectile(float t_speed, Vector2 t_direction, float t_rotation)
+    public void ReadyProjectile(Vector2 t_position, Vector2 t_direction, float t_rotation)
     {
-        speed = t_speed;
+        transform.position = t_position;
         direction = t_direction;
         transform.rotation = Quaternion.Euler(0, 0, t_rotation);
 
-        GetComponent<Rigidbody2D>().velocity = new Vector3(direction.x, direction.y).normalized * speed;
+        GetComponent<Rigidbody2D>().velocity = new Vector3(direction.x, direction.y).normalized * PROJECTILE_SPEED;
     }
 }
