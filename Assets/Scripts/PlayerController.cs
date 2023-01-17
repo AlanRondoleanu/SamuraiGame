@@ -10,12 +10,16 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private PlayerScript player;
     private Animator animator;
+    private SpriteRenderer spriteRenderer;
+    private Camera mainCam;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         player = GetComponent<PlayerScript>();
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
 
     void Update()
@@ -33,14 +37,14 @@ public class PlayerController : MonoBehaviour
                 player.ChangeAttackMode(PlayerScript.AttackMode.Flow);
                 speed = MAX_FLOW_SPEED;
             }
-
-            Debug.Log("Mode Change");
         }
         else if (Input.GetKeyDown("e"))
         {
             if (player.getAttackMode() == PlayerScript.AttackMode.Flow)
             {
                 player.DashAttack();
+
+                turnTowardsMouse();
             }
             else if (player.getAttackMode() == PlayerScript.AttackMode.Rock)
             {
@@ -57,8 +61,6 @@ public class PlayerController : MonoBehaviour
             {
                 player.MeleeAttack();
             }
-
-            Debug.Log("Attack");
         }
 
 
@@ -78,6 +80,35 @@ public class PlayerController : MonoBehaviour
             else
             {
                 animator.SetBool("Running", false);
+            }
+
+            // Sprite Flip
+            if (player.getAttacking() == false && player.getDashing() == false)
+            {
+                if (xMove > 0)
+                {
+                    spriteRenderer.flipX = false;
+                }
+                else if (xMove < 0)
+                {
+                    spriteRenderer.flipX = true;
+                }
+            }
+        }
+    }
+
+    private void turnTowardsMouse()
+    {
+        if (player.getAttacking() == true || player.getDashing() == true)
+        {
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            if (mousePos.x < transform.position.x)
+            {
+                spriteRenderer.flipX = true;
+            }
+            else
+            {
+                spriteRenderer.flipX = false;
             }
         }
     }

@@ -8,17 +8,21 @@ public class PlayerScript : MonoBehaviour
     {
         Rock, Flow
     }
-    
+    public Animator meleeEffect;
+    public GameObject meleeEffectObject;
+
     private Camera mainCam;
     private Animator animator;
     private AttackMode attackMode;
     private const float MELEE_DISTANCE = 1;
+    private const float DEFLECT_DISTANCE = 0.5f;
 
     // Melee
     public GameObject playerMeleeHitBox;
 
     private float meleeAttackTimer;
     private const float ATTACK_LIFETIME = 0.2f;
+    private bool isAttacking = false;
 
     // Deflect
     public GameObject deflectHitBox;
@@ -28,6 +32,7 @@ public class PlayerScript : MonoBehaviour
     private float deflectCooldownTimer;
     private const float DEFLECT_COOLDOWN = 1f;
     private bool isDeflectReady = true;
+    private bool isDeflectUp = false;
 
     // Ranged 
     public GameObject playerProjectile;
@@ -61,11 +66,14 @@ public class PlayerScript : MonoBehaviour
         if (meleeAttackTimer <= 0.0f)
         {
             playerMeleeHitBox.gameObject.SetActive(false);
+            isAttacking = false;
         }
         deflectTimer -= Time.deltaTime;
         if (deflectTimer <= 0.0f)
         {
             deflectHitBox.gameObject.SetActive(false);
+            isDeflectUp = false;
+            animator.SetBool("DeflectUp", false);
         }
 
         // Cooldown Timers
@@ -74,6 +82,7 @@ public class PlayerScript : MonoBehaviour
         {
             isDeflectReady = true;
         }
+
         dashCooldownTimer -= Time.deltaTime;
         if (dashCooldownTimer <= 0.0f)
         {
@@ -91,9 +100,14 @@ public class PlayerScript : MonoBehaviour
             direction.z = 0;
             direction = direction.normalized;
 
+            // Melee
             Vector3 desiredPos = transform.position + direction * MELEE_DISTANCE;
-            playerMeleeHitBox.transform.position = Vector3.MoveTowards(playerMeleeHitBox.transform.position, desiredPos, 100 * Time.deltaTime);
-            deflectHitBox.transform.position = playerMeleeHitBox.transform.position;
+            playerMeleeHitBox.transform.position = Vector3.MoveTowards(playerMeleeHitBox.transform.position, desiredPos, 1000 * Time.deltaTime);
+            // Deflect
+            Vector3 desiredPos2 = transform.position + direction * DEFLECT_DISTANCE;
+            deflectHitBox.transform.position = Vector3.MoveTowards(playerMeleeHitBox.transform.position, desiredPos, 1000 * Time.deltaTime);
+
+            meleeEffectObject.transform.position = playerMeleeHitBox.transform.position;
         }
 
         if (isDashing)
@@ -105,6 +119,7 @@ public class PlayerScript : MonoBehaviour
             if (dashTimer <= 0)
             {
                 isDashing = false;
+                animator.SetBool("Dashing", false);
             }
         }
     }
@@ -125,6 +140,10 @@ public class PlayerScript : MonoBehaviour
         {
             playerMeleeHitBox.gameObject.SetActive(true);
             meleeAttackTimer = ATTACK_LIFETIME;
+            isAttacking = true;
+
+            animator.SetTrigger("Attack");
+            meleeEffect.SetTrigger("MeleeEffect");
         }
     }
 
@@ -137,6 +156,9 @@ public class PlayerScript : MonoBehaviour
             deflectCooldownTimer = DEFLECT_COOLDOWN;
 
             isDeflectReady = false;
+            isDeflectUp = true;
+
+            animator.SetBool("DeflectUp", true);
         }
     }
 
@@ -165,6 +187,7 @@ public class PlayerScript : MonoBehaviour
             dashDirection.z = 0;
             dashTimer = DASH_DURATION;
             dashCooldownTimer = DASH_COOLDOWN;
+            animator.SetBool("Dashing", true);
 
             isDashReady = false;
         }
@@ -180,4 +203,15 @@ public class PlayerScript : MonoBehaviour
     {
         isDashReady = true;
     }
+
+    public bool getAttacking()
+    {
+        return isAttacking;
+    }
+
+    public bool getDeflecting()
+    {
+        return isDeflectUp;
+    }
 }
+

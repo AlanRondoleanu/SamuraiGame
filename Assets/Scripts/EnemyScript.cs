@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemyScript : MonoBehaviour
 {
     public float health = 50;
+    public GameObject dashCutEffect;
+    public GameObject dashKillEffect;
 
     //Ranged Attack
     public GameObject enemyProjectile;
@@ -82,6 +84,14 @@ public class EnemyScript : MonoBehaviour
             if (health <= 0)
             {
                 collision.gameObject.GetComponent<PlayerScript>().resetDash();
+
+                GameObject killEffect = Instantiate(dashKillEffect);
+                killEffect.transform.position = transform.position;
+            }
+            else
+            {
+                GameObject cutEffect = Instantiate(dashCutEffect);
+                cutEffect.transform.position = transform.position; 
             }
         }
     }
