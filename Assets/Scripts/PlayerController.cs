@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private const float MAX_FLOW_SPEED = 4;
-    private const float MAX_ROCK_SPEED = 2;
+    private const float MAX_FLOW_SPEED = 5;
+    private const float MAX_ROCK_SPEED = 3;
     private float speed = MAX_ROCK_SPEED;
     private Rigidbody2D rb;
     private PlayerScript player;
@@ -37,6 +37,8 @@ public class PlayerController : MonoBehaviour
                 player.ChangeAttackMode(PlayerScript.AttackMode.Flow);
                 speed = MAX_FLOW_SPEED;
             }
+
+            player.changeStance();
         }
         else if (Input.GetKeyDown("e"))
         {
@@ -49,6 +51,8 @@ public class PlayerController : MonoBehaviour
             else if (player.getAttackMode() == PlayerScript.AttackMode.Rock)
             {
                 player.Deflect();
+
+                turnTowardsMouse();
             }
         }
         else if (Input.GetKeyDown("space"))
@@ -56,10 +60,14 @@ public class PlayerController : MonoBehaviour
             if (player.getAttackMode() == PlayerScript.AttackMode.Flow)
             {
                 player.RangedAttack();
+
+                turnTowardsMouse();
             }
             else if (player.getAttackMode() == PlayerScript.AttackMode.Rock)
             {
                 player.MeleeAttack();
+
+                turnTowardsMouse();
             }
         }
 
@@ -99,17 +107,16 @@ public class PlayerController : MonoBehaviour
 
     private void turnTowardsMouse()
     {
-        if (player.getAttacking() == true || player.getDashing() == true)
+
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (mousePos.x < transform.position.x)
         {
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            if (mousePos.x < transform.position.x)
-            {
-                spriteRenderer.flipX = true;
-            }
-            else
-            {
-                spriteRenderer.flipX = false;
-            }
+            spriteRenderer.flipX = true;
         }
+        else
+        {
+            spriteRenderer.flipX = false;
+        }
+
     }
 }

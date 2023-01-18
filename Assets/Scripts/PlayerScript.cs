@@ -10,6 +10,8 @@ public class PlayerScript : MonoBehaviour
     }
     public Animator meleeEffect;
     public GameObject meleeEffectObject;
+    public Animator stanceEffect;
+    public GameObject dashSmokeEffect;
 
     private Camera mainCam;
     private Animator animator;
@@ -82,7 +84,6 @@ public class PlayerScript : MonoBehaviour
         {
             isDeflectReady = true;
         }
-
         dashCooldownTimer -= Time.deltaTime;
         if (dashCooldownTimer <= 0.0f)
         {
@@ -105,11 +106,12 @@ public class PlayerScript : MonoBehaviour
             playerMeleeHitBox.transform.position = Vector3.MoveTowards(playerMeleeHitBox.transform.position, desiredPos, 1000 * Time.deltaTime);
             // Deflect
             Vector3 desiredPos2 = transform.position + direction * DEFLECT_DISTANCE;
-            deflectHitBox.transform.position = Vector3.MoveTowards(playerMeleeHitBox.transform.position, desiredPos, 1000 * Time.deltaTime);
+            deflectHitBox.transform.position = Vector3.MoveTowards(playerMeleeHitBox.transform.position, desiredPos2, 1000 * Time.deltaTime);
 
             meleeEffectObject.transform.position = playerMeleeHitBox.transform.position;
         }
 
+        // Dash movement when dash is activated
         if (isDashing)
         {
             transform.position = Vector3.MoveTowards(transform.position, transform.position + dashDirection * dashDistance, dashSpeed * Time.deltaTime);
@@ -175,7 +177,9 @@ public class PlayerScript : MonoBehaviour
         // Direction
         Vector2 projectileDirection = new Vector3(direction.x, direction.y).normalized * MAX_PROJECTILE_SPEED;
 
-        projectile.GetComponent<ProjectileScript>().ReadyProjectile(transform.position, projectileDirection, projectileRotation);
+        projectile.GetComponent<ProjectileScript>().ReadyProjectile(transform.position, projectileDirection, projectileRotation, GameData.instance.rangedDamage);
+
+        animator.SetTrigger("Attack");
     }
 
     public void DashAttack()
@@ -190,6 +194,16 @@ public class PlayerScript : MonoBehaviour
             animator.SetBool("Dashing", true);
 
             isDashReady = false;
+
+            // Smoke effect
+            GameObject smoke = Instantiate(dashSmokeEffect);
+            smoke.transform.position = new Vector2(transform.position.x, transform.position.y - 0.3f);
+
+            // Rotation Logic for the smoke
+            Vector3 mousePosition = mainCam.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 rotation = transform.position - mousePosition;
+            float smokeRotation = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
+            smoke.transform.rotation = Quaternion.Euler(smokeRotation, -90, 90);
         }
 
     }
@@ -212,6 +226,23 @@ public class PlayerScript : MonoBehaviour
     public bool getDeflecting()
     {
         return isDeflectUp;
+    }
+
+    public void deflectSuccess()
+    {
+        animator.SetTrigger("Deflect");
+    }
+
+    public void changeStance()
+    {
+        if (attackMode == AttackMode.Flow)
+        {
+            stanceEffect.SetTrigger("Flow");
+        }
+        else
+        {
+            stanceEffect.SetTrigger("Rock");
+        }
     }
 }
 

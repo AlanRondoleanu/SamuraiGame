@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - EnemyAttack
   - PlayerDeflect
+  - PlayerRangedAttack
   layers:
   - Default
   - TransparentFX
@@ -44,6 +45,12 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Enemies
+    uniqueID: 2353377181
+    locked: 0
+  - name: Player
+    uniqueID: 4047593675
     locked: 0
   - name: FX
     uniqueID: 2650392889
