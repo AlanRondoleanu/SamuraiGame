@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 444a11ad84b4d2249abc55074cce9681
+guid: b297fb3939b54b447b58eb5e34d929be
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,7 +105,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Assassin_Attack_0
+      name: Spearman_Death_0
       rect:
         serializedVersion: 2
         x: 0
@@ -119,14 +119,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 253cc5c2138fd4f458f126e766541050
-      internalID: -1181663500
+      spriteID: 690eb1c60ef10bf4bb64e6781338f921
+      internalID: 605986184
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_1
+      name: Spearman_Death_1
       rect:
         serializedVersion: 2
         x: 64
@@ -140,14 +140,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bfa333aa4873d5c47a3b3e025ec4b0ba
-      internalID: -225345891
+      spriteID: bedce09c146126148a611fa01a55e2bc
+      internalID: -1921239993
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_2
+      name: Spearman_Death_2
       rect:
         serializedVersion: 2
         x: 128
@@ -161,14 +161,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 68b8e432e8a8cfe4e9336b01fedbe5dd
-      internalID: -39853655
+      spriteID: 6615306933dc0b74ba3edd8a2136de14
+      internalID: 80074552
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_3
+      name: Spearman_Death_3
       rect:
         serializedVersion: 2
         x: 192
@@ -182,14 +182,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a4b5119ff46a9f45bec48b0e8715840
-      internalID: 668192541
+      spriteID: 27ec61c59ee15a543a105377629f93ba
+      internalID: -2014945870
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_4
+      name: Spearman_Death_4
       rect:
         serializedVersion: 2
         x: 256
@@ -203,14 +203,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2bced536040b42b4f9a544452c0811f6
-      internalID: -1856554757
+      spriteID: a64ef127e7495b1458a796f9e103402f
+      internalID: 1455411787
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_5
+      name: Spearman_Death_5
       rect:
         serializedVersion: 2
         x: 320
@@ -224,14 +224,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3309037c4b6ce7f428013ef33f6338fc
-      internalID: -1551171854
+      spriteID: b559995aad86323428636dd44d921b1c
+      internalID: 136929395
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_6
+      name: Spearman_Death_6
       rect:
         serializedVersion: 2
         x: 384
@@ -245,14 +245,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 006ddd48f891272489fbb661f8bb62a5
-      internalID: -1148480624
+      spriteID: 51a8fb2be6afbbe4986fd2c6ff7a4e87
+      internalID: 732255053
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_7
+      name: Spearman_Death_7
       rect:
         serializedVersion: 2
         x: 448
@@ -266,14 +266,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d35bec97d19e3564d8865fd069f267ae
-      internalID: -2126090765
+      spriteID: a1f33ec15f5955742a64239f1a5f790b
+      internalID: 1834010020
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_8
+      name: Spearman_Death_8
       rect:
         serializedVersion: 2
         x: 512
@@ -287,14 +287,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c994607b3bc202749b0ccf480f3c241c
-      internalID: 2032498706
+      spriteID: d51cdee743223c64a99e3fc43555cca7
+      internalID: -1962869052
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_9
+      name: Spearman_Death_9
       rect:
         serializedVersion: 2
         x: 576
@@ -308,14 +308,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e9dfe02712101324b8c1dd7a1a663719
-      internalID: 871652753
+      spriteID: 7a50e790919d4be49ad7d4323a73b276
+      internalID: -401209452
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_10
+      name: Spearman_Death_10
       rect:
         serializedVersion: 2
         x: 640
@@ -329,14 +329,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d5797f27ce3af2d4fa83ca0cb6de3f98
-      internalID: -44689779
+      spriteID: ca0736d4556774642875611296de7dd7
+      internalID: -124298750
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_11
+      name: Spearman_Death_11
       rect:
         serializedVersion: 2
         x: 704
@@ -350,14 +350,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 734d7df9c953b98479d6ea5e2889d0bc
-      internalID: 456950350
+      spriteID: 23d668ec879ab7f42bd4af42f9376413
+      internalID: 1055393799
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_12
+      name: Spearman_Death_12
       rect:
         serializedVersion: 2
         x: 768
@@ -371,14 +371,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4f60443a00376cb4e95a6e8b05e10d81
-      internalID: -1952540846
+      spriteID: 3db0f73fedd9a604db4d486e771c4ec5
+      internalID: 1424663231
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_13
+      name: Spearman_Death_13
       rect:
         serializedVersion: 2
         x: 832
@@ -392,14 +392,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7314968f1aa3e874b89c1299b0266434
-      internalID: 466875358
+      spriteID: bd711369255e86447adbd345e8d1c823
+      internalID: 985610360
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_14
+      name: Spearman_Death_14
       rect:
         serializedVersion: 2
         x: 896
@@ -413,14 +413,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 699076c36518e894a842a9c8f419c129
-      internalID: -843540363
+      spriteID: 339c4871d5d0e284286e875f7dcd8fc5
+      internalID: -371151721
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_15
+      name: Spearman_Death_15
       rect:
         serializedVersion: 2
         x: 960
@@ -434,14 +434,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a8385c1204a5067469164a03e5b84a16
-      internalID: 952416002
+      spriteID: 8285811dffd77cb47923c6a60658c5f3
+      internalID: -1847805812
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_16
+      name: Spearman_Death_16
       rect:
         serializedVersion: 2
         x: 1024
@@ -455,14 +455,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c50d591a5d3b60b4a94be0f07519d173
-      internalID: 963363044
+      spriteID: 4c40f0566855d2d48ae01e205846510f
+      internalID: -1732373633
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_17
+      name: Spearman_Death_17
       rect:
         serializedVersion: 2
         x: 1088
@@ -476,14 +476,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e520125cf36ca10449681240b855c79f
-      internalID: -438145290
+      spriteID: 3326cd58583bce74ebfe8aff59bc2e64
+      internalID: -1183396783
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_18
+      name: Spearman_Death_18
       rect:
         serializedVersion: 2
         x: 1152
@@ -497,8 +497,134 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 464b93972f1cb29449376b43a0ac28de
-      internalID: -1201212168
+      spriteID: acccbaca0ca2c7e48a07c57e4b36863c
+      internalID: 1850018366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spearman_Death_19
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 8
+        width: 64
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 751fb391336202e4d8f92ae81feb71aa
+      internalID: -677520512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spearman_Death_20
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 8
+        width: 64
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fa33f245942f3045b927ed9f4d7fb28
+      internalID: -1869953576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spearman_Death_21
+      rect:
+        serializedVersion: 2
+        x: 1344
+        y: 8
+        width: 64
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6336c86e54b66ef41809b7e742fcfa0f
+      internalID: -1938006142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spearman_Death_22
+      rect:
+        serializedVersion: 2
+        x: 1408
+        y: 8
+        width: 64
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d969436983528fb4f9459143f3751120
+      internalID: 170130453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spearman_Death_23
+      rect:
+        serializedVersion: 2
+        x: 1472
+        y: 8
+        width: 64
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65492d3bd2156714aa80978acb3360bf
+      internalID: 1697280485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spearman_Death_24
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 8
+        width: 64
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84494cbca5866df4abf587ede887816a
+      internalID: -223768130
       vertices: []
       indices: 
       edges: []
@@ -514,25 +640,31 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Assassin_Attack_7: -2126090765
-      Assassin_Attack_10: -44689779
-      Assassin_Attack_18: -1201212168
-      Assassin_Attack_12: -1952540846
-      Assassin_Attack_16: 963363044
-      Assassin_Attack_14: -843540363
-      Assassin_Attack_13: 466875358
-      Assassin_Attack_1: -225345891
-      Assassin_Attack_8: 2032498706
-      Assassin_Attack_0: -1181663500
-      Assassin_Attack_6: -1148480624
-      Assassin_Attack_11: 456950350
-      Assassin_Attack_5: -1551171854
-      Assassin_Attack_3: 668192541
-      Assassin_Attack_9: 871652753
-      Assassin_Attack_4: -1856554757
-      Assassin_Attack_2: -39853655
-      Assassin_Attack_15: 952416002
-      Assassin_Attack_17: -438145290
+      Spearman_Death_9: -401209452
+      Spearman_Death_20: -1869953576
+      Spearman_Death_24: -223768130
+      Spearman_Death_22: 170130453
+      Spearman_Death_2: 80074552
+      Spearman_Death_11: 1055393799
+      Spearman_Death_17: -1183396783
+      Spearman_Death_14: -371151721
+      Spearman_Death_5: 136929395
+      Spearman_Death_13: 985610360
+      Spearman_Death_3: -2014945870
+      Spearman_Death_0: 605986184
+      Spearman_Death_19: -677520512
+      Spearman_Death_4: 1455411787
+      Spearman_Death_15: -1847805812
+      Spearman_Death_21: -1938006142
+      Spearman_Death_1: -1921239993
+      Spearman_Death_7: 1834010020
+      Spearman_Death_23: 1697280485
+      Spearman_Death_6: 732255053
+      Spearman_Death_16: -1732373633
+      Spearman_Death_10: -124298750
+      Spearman_Death_8: -1962869052
+      Spearman_Death_12: 1424663231
+      Spearman_Death_18: 1850018366
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

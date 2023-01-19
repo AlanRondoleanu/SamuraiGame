@@ -16,8 +16,13 @@ public class GameData : MonoBehaviour
     public float reflectSpeedMultipler;
     public float reflectDamageMultipler;
 
-    // Enemy
-    public float enemyRangedDamage;
+    // Assassin
+    public float assassinDamage;
+    public float assassinKnockback;
+
+    // Spearmen
+    public float spearmenDamage;
+    public float spearmenKnockback;
 
     private void Awake()
     {

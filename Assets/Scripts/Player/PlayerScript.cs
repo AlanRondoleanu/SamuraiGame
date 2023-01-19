@@ -15,9 +15,14 @@ public class PlayerScript : MonoBehaviour
 
     private Camera mainCam;
     private Animator animator;
+    private Rigidbody2D rb;
+
+    // Player Vars
     private AttackMode attackMode;
     private const float MELEE_DISTANCE = 1;
     private const float DEFLECT_DISTANCE = 0.5f;
+    private float health = 100;
+    private const float MAX_HEALTH = 100;
 
     // Melee
     public GameObject playerMeleeHitBox;
@@ -58,6 +63,7 @@ public class PlayerScript : MonoBehaviour
         animator = GetComponent<Animator>();
         playerMeleeHitBox.transform.position = transform.position + transform.right * MELEE_DISTANCE;
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -114,7 +120,11 @@ public class PlayerScript : MonoBehaviour
         // Dash movement when dash is activated
         if (isDashing)
         {
-            transform.position = Vector3.MoveTowards(transform.position, transform.position + dashDirection * dashDistance, dashSpeed * Time.deltaTime);
+            // Raycasting wall detection
+            detectWalls(dashDirection);
+
+            if (isDashing)
+                transform.position = Vector3.MoveTowards(transform.position, transform.position + dashDirection * dashDistance, dashSpeed * Time.deltaTime);
 
             // Dash timer
             dashTimer -= Time.deltaTime;
@@ -242,6 +252,45 @@ public class PlayerScript : MonoBehaviour
         else
         {
             stanceEffect.SetTrigger("Rock");
+        }
+    }
+
+    void detectWalls(Vector2 t_direction)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y) + t_direction, t_direction, 0.5f);
+        if (hit.collider != null)
+        {
+            if (hit.collider.tag == "Wall")
+            {
+                isDashing = false;
+                animator.SetBool("Dashing", false);
+            }
+            else if (hit.collider.tag == "Player")
+            {
+                Debug.Log("Player hit...");
+            }
+            //Debug.DrawRay(new Vector2(transform.position.x, transform.position.y) + t_direction, t_direction, Color.red, 0.8f);
+        }
+    }
+
+    public void TakeDamage( Vector3 t_enemyPos, float t_damage, float t_knockback)
+    {
+        health -= t_damage;
+        rb.AddForce((transform.position - t_enemyPos).normalized * t_knockback);
+
+        // Camera shake
+        mainCam.GetComponent<ScreenShake>().ShakeCamera(0.8f);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "EnemyAttack")
+        {
+            TakeDamage(collision.transform.position, GameData.instance.assassinDamage, GameData.instance.assassinKnockback);
+        }
+        else if (collision.gameObject.tag == "EnemySpear")
+        {
+            TakeDamage(collision.transform.position, GameData.instance.spearmenDamage, GameData.instance.spearmenKnockback);
         }
     }
 }

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 985d85e4e2bd87945bc5947d84e8b503
+guid: 31adc4b8b5246c841b5cd0672a60c32c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,7 +105,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Assassin_Run_0
+      name: Spearman_Run_0
       rect:
         serializedVersion: 2
         x: 0
@@ -119,14 +119,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 30965b92469248a4d9e3e7cb793d808d
-      internalID: 1670688805
+      spriteID: 6ab01e1dc60a0d54aa81e6d2558592d6
+      internalID: 1640966053
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Run_1
+      name: Spearman_Run_1
       rect:
         serializedVersion: 2
         x: 64
@@ -140,14 +140,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4192146b1adcc0045b69380a2ac52214
-      internalID: 472076518
+      spriteID: 89fe06a0d0bf91e4c9be374803391f96
+      internalID: -1957253895
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Run_2
+      name: Spearman_Run_2
       rect:
         serializedVersion: 2
         x: 128
@@ -161,14 +161,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b83e289d7fd2a8b4bb4e07b572716eb4
-      internalID: -1453491488
+      spriteID: 3b0b1bf70e6eeb749bd0b5dbe7b6463d
+      internalID: -704234252
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Run_3
+      name: Spearman_Run_3
       rect:
         serializedVersion: 2
         x: 192
@@ -182,14 +182,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 67c67df78ae46df4e8186881e9904fee
-      internalID: -1947444466
+      spriteID: 1674042bb064b5e49aa12f0062b630ad
+      internalID: 1689453437
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Run_4
+      name: Spearman_Run_4
       rect:
         serializedVersion: 2
         x: 256
@@ -203,14 +203,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 533c85ca33c075a4d9c1488044482f3f
-      internalID: 139517215
+      spriteID: ea3b1cc09f790ae43add64bb362908db
+      internalID: 846819107
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Run_5
+      name: Spearman_Run_5
       rect:
         serializedVersion: 2
         x: 320
@@ -224,14 +224,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6bad1ab169ad16b47981413cf8f3d5ac
-      internalID: -1656799844
+      spriteID: e526b7befc07b654ca943f982d132412
+      internalID: -1388283177
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Run_6
+      name: Spearman_Run_6
       rect:
         serializedVersion: 2
         x: 384
@@ -245,14 +245,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b8ba6a2d7fab9c54bb035adb73383cf2
-      internalID: 2015918576
+      spriteID: 67a9474f56a09534ca2aa9eb9ef010a1
+      internalID: -828600514
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Run_7
+      name: Spearman_Run_7
       rect:
         serializedVersion: 2
         x: 448
@@ -266,8 +266,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0be8ca894344dde49a495510bd9b4f3d
-      internalID: 1842671842
+      spriteID: 3ae4939ef7d10a04f9ec1f58b91a11a0
+      internalID: 1812941568
       vertices: []
       indices: 
       edges: []
@@ -283,14 +283,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Assassin_Run_7: 1842671842
-      Assassin_Run_4: 139517215
-      Assassin_Run_1: 472076518
-      Assassin_Run_3: -1947444466
-      Assassin_Run_6: 2015918576
-      Assassin_Run_5: -1656799844
-      Assassin_Run_0: 1670688805
-      Assassin_Run_2: -1453491488
+      Spearman_Run_2: -704234252
+      Spearman_Run_0: 1640966053
+      Spearman_Run_3: 1689453437
+      Spearman_Run_4: 846819107
+      Spearman_Run_1: -1957253895
+      Spearman_Run_7: 1812941568
+      Spearman_Run_6: -828600514
+      Spearman_Run_5: -1388283177
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1143373476}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 9041310893072309504}
@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 9041310893072309507}
   - component: {fileID: 9041310893072309505}
   - component: {fileID: 9041310893072309510}
-  - component: {fileID: 9041310893072309629}
+  - component: {fileID: 3430980043619028210}
   - component: {fileID: 9041310893072309511}
   - component: {fileID: 9041310893072309506}
   m_Layer: 0
@@ -340,8 +340,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &9041310893072309629
-CircleCollider2D:
+--- !u!61 &3430980043619028210
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -350,12 +350,22 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.03, y: -0.06}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.6, y: 1.6}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Size: {x: 0.8, y: 0.8}
+  m_EdgeRadius: 0
 --- !u!114 &9041310893072309511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -383,6 +393,7 @@ MonoBehaviour:
   meleeEffect: {fileID: 3012474463966128015}
   meleeEffectObject: {fileID: 521075336501540583}
   stanceEffect: {fileID: 1143373477}
+  dashSmokeEffect: {fileID: 1057234484461686746, guid: ae2d9104612a7b149a6af6f0e7aead8c, type: 3}
   playerMeleeHitBox: {fileID: 9041310892621655882}
   deflectHitBox: {fileID: 9041310893475429724}
   playerProjectile: {fileID: 4957097707756997925, guid: af364e4122af29d42bbe94cc9c4710b6, type: 3}

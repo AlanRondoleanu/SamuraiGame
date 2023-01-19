@@ -5,37 +5,32 @@ using UnityEngine;
 public class EnemyScript : MonoBehaviour
 {
     public float health = 50;
-    public bool dead = false;
     public GameObject dashCutEffect;
     public GameObject dashKillEffect;
+    public GameObject healthBar;
 
-    //Ranged Attack
-    public GameObject enemyProjectile;
-
-    private float rangedTimer;
-    private const float MAX_RANGED_TIMER = 3.0f;
+    private bool dead = false;
+    private float MAX_HEALTH;
     private Animator animator;
     private GameObject player;
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
+    private Camera mainCam;
 
     void Start()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         player = GameObject.FindGameObjectWithTag("Player");
+
+        MAX_HEALTH = health;
     }
 
     void Update()
     {
-        // Ranged Timer
-        rangedTimer += Time.deltaTime;
-        if (rangedTimer >= MAX_RANGED_TIMER)
-        {
-            RangedAttack();
-        }
-
         if (health <= 0 && dead == false)
         {
             animator.SetBool("Dead", true);
@@ -53,20 +48,14 @@ public class EnemyScript : MonoBehaviour
 
             turnTowardsDirection(player.transform.position);
 
+            // Health Bar
+            float percent = (health / MAX_HEALTH) * 1;
+            percent -= 1;
+            healthBar.GetComponent<EnemyHealthBar>().setMask(percent);
+
+            // Debug
             Debug.Log(t_damage + " Damage");
         }
-    }
-
-    void RangedAttack()
-    {
-        GameObject projectile = Instantiate(enemyProjectile);
-
-        // Direction
-        Vector2 projectileDirection = Vector3.left;
-
-        projectile.GetComponent<ProjectileScript>().ReadyProjectile(transform.position, projectileDirection, 0, GameData.instance.enemyRangedDamage);
-
-        rangedTimer = 0;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -77,13 +66,25 @@ public class EnemyScript : MonoBehaviour
             {
                 TakeDamage(GameData.instance.meleeDamage);
                 rb.AddForce((transform.position - player.transform.position).normalized * GameData.instance.meleeKnockback);
+
+                // Screenshake
+                mainCam.GetComponent<ScreenShake>().ShakeCamera(0.4f);
             }
             else if (collision.gameObject.tag == "PlayerRangedAttack")
             {
                 TakeDamage(collision.gameObject.GetComponent<ProjectileScript>().getDamage());
                 rb.AddForce((transform.position - player.transform.position).normalized * GameData.instance.rangedKnockback);
-            }
 
+                // Screenshake
+                mainCam.GetComponent<ScreenShake>().ShakeCamera(0.2f);
+            }
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (dead == false)
+        {
             if (collision.gameObject.tag == "Player" && collision.gameObject.GetComponent<PlayerScript>().getDashing() == true)
             {
                 TakeDamage(GameData.instance.dashDamage);
@@ -94,17 +95,21 @@ public class EnemyScript : MonoBehaviour
 
                     GameObject killEffect = Instantiate(dashKillEffect);
                     killEffect.transform.position = transform.position;
+                    // Screenshake
+                    mainCam.GetComponent<ScreenShake>().ShakeCamera(0.4f);
                 }
                 else
                 {
                     GameObject cutEffect = Instantiate(dashCutEffect);
                     cutEffect.transform.position = transform.position;
+                    // Screenshake
+                    mainCam.GetComponent<ScreenShake>().ShakeCamera(0.8f);
                 }
             }
         }
     }
 
-    private void turnTowardsDirection(Vector2 t_vector)
+    public void turnTowardsDirection(Vector2 t_vector)
     {
         if (t_vector.x < transform.position.x)
         {
@@ -115,5 +120,10 @@ public class EnemyScript : MonoBehaviour
             spriteRenderer.flipX = false;
         }
 
+    }
+
+    public bool getDead()
+    {
+        return dead;
     }
 }

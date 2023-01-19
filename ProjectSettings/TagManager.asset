@@ -9,6 +9,8 @@ TagManager:
   - EnemyAttack
   - PlayerDeflect
   - PlayerRangedAttack
+  - Wall
+  - EnemySpear
   layers:
   - Default
   - TransparentFX
@@ -16,8 +18,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Player
+  - Enemy
   - 
   - 
   - 
@@ -54,4 +56,7 @@ TagManager:
     locked: 0
   - name: FX
     uniqueID: 2650392889
+    locked: 0
+  - name: HealthBar
+    uniqueID: 1658652559
     locked: 0

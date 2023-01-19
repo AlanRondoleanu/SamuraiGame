@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 444a11ad84b4d2249abc55074cce9681
+guid: 6adc9bd00780e574f947cb7748eb9ff1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,13 +105,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Assassin_Attack_0
+      name: Player_Revive_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 8
+        y: 0
         width: 64
-        height: 32
+        height: 52
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,20 +119,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 253cc5c2138fd4f458f126e766541050
-      internalID: -1181663500
+      spriteID: 2ccc5b94dbff4bd43b8cd3a81d226464
+      internalID: -619010887
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_1
+      name: Player_Revive_1
       rect:
         serializedVersion: 2
         x: 64
-        y: 8
+        y: 0
         width: 64
-        height: 32
+        height: 52
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,20 +140,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bfa333aa4873d5c47a3b3e025ec4b0ba
-      internalID: -225345891
+      spriteID: e0d7c46c174f72f4fa18e6de47339636
+      internalID: -158000944
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_2
+      name: Player_Revive_2
       rect:
         serializedVersion: 2
         x: 128
-        y: 8
+        y: 0
         width: 64
-        height: 32
+        height: 52
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -161,20 +161,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 68b8e432e8a8cfe4e9336b01fedbe5dd
-      internalID: -39853655
+      spriteID: 41da6f74dc42e3a4db6d3590e3b179aa
+      internalID: -120678826
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_3
+      name: Player_Revive_3
       rect:
         serializedVersion: 2
         x: 192
-        y: 8
+        y: 0
         width: 64
-        height: 32
+        height: 52
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -182,20 +182,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a4b5119ff46a9f45bec48b0e8715840
-      internalID: 668192541
+      spriteID: 7496033cf7355c844803ba8691f3baca
+      internalID: 210944329
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_4
+      name: Player_Revive_4
       rect:
         serializedVersion: 2
         x: 256
-        y: 8
+        y: 0
         width: 64
-        height: 32
+        height: 52
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -203,20 +203,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2bced536040b42b4f9a544452c0811f6
-      internalID: -1856554757
+      spriteID: bad12a6cf00633549aaae8ad379b23f3
+      internalID: -820010106
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_5
+      name: Player_Revive_5
       rect:
         serializedVersion: 2
         x: 320
-        y: 8
+        y: 0
         width: 64
-        height: 32
+        height: 52
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -224,20 +224,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3309037c4b6ce7f428013ef33f6338fc
-      internalID: -1551171854
+      spriteID: 9e193dc1997d0a44aa6ede0758080edb
+      internalID: 1213100283
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_6
+      name: Player_Revive_6
       rect:
         serializedVersion: 2
         x: 384
-        y: 8
+        y: 0
         width: 64
-        height: 32
+        height: 52
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -245,20 +245,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 006ddd48f891272489fbb661f8bb62a5
-      internalID: -1148480624
+      spriteID: 7fe6396413282cc4c8911b12904b87de
+      internalID: -1126528913
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_7
+      name: Player_Revive_7
       rect:
         serializedVersion: 2
         x: 448
-        y: 8
+        y: 0
         width: 64
-        height: 32
+        height: 52
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -266,20 +266,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d35bec97d19e3564d8865fd069f267ae
-      internalID: -2126090765
+      spriteID: 1db0bced416e30343b67092c2f7517cf
+      internalID: -1004420228
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_8
+      name: Player_Revive_8
       rect:
         serializedVersion: 2
         x: 512
-        y: 8
+        y: 0
         width: 64
-        height: 32
+        height: 52
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -287,20 +287,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c994607b3bc202749b0ccf480f3c241c
-      internalID: 2032498706
+      spriteID: 070d01e47b864114db64e2c144fee256
+      internalID: -1215629206
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_9
+      name: Player_Revive_9
       rect:
         serializedVersion: 2
         x: 576
-        y: 8
+        y: 0
         width: 64
-        height: 32
+        height: 52
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -308,20 +308,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e9dfe02712101324b8c1dd7a1a663719
-      internalID: 871652753
+      spriteID: b179cd2278b9f074fb1bdcb4320699f2
+      internalID: -1665972552
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_10
+      name: Player_Revive_10
       rect:
         serializedVersion: 2
         x: 640
-        y: 8
+        y: 0
         width: 64
-        height: 32
+        height: 52
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -329,20 +329,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d5797f27ce3af2d4fa83ca0cb6de3f98
-      internalID: -44689779
+      spriteID: 9828ec2eaeb9f254d9b61daa737ba7bf
+      internalID: -2135587199
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_11
+      name: Player_Revive_11
       rect:
         serializedVersion: 2
         x: 704
-        y: 8
+        y: 0
         width: 64
-        height: 32
+        height: 52
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -350,20 +350,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 734d7df9c953b98479d6ea5e2889d0bc
-      internalID: 456950350
+      spriteID: 390ef28dd01a3e443931b898f8328b75
+      internalID: -1647744350
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_12
+      name: Player_Revive_12
       rect:
         serializedVersion: 2
         x: 768
-        y: 8
+        y: 0
         width: 64
-        height: 32
+        height: 52
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -371,20 +371,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4f60443a00376cb4e95a6e8b05e10d81
-      internalID: -1952540846
+      spriteID: 2053e3c3cd422924ea8779ae78f499cc
+      internalID: 70776999
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_13
+      name: Player_Revive_13
       rect:
         serializedVersion: 2
         x: 832
-        y: 8
+        y: 0
         width: 64
-        height: 32
+        height: 52
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -392,20 +392,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7314968f1aa3e874b89c1299b0266434
-      internalID: 466875358
+      spriteID: 3ad9a24fc23123d42b9c0df5b4ebefcd
+      internalID: 1236775922
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_14
+      name: Player_Revive_14
       rect:
         serializedVersion: 2
         x: 896
-        y: 8
+        y: 0
         width: 64
-        height: 32
+        height: 52
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -413,20 +413,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 699076c36518e894a842a9c8f419c129
-      internalID: -843540363
+      spriteID: 26052f663cc3d16438a03080eda109ad
+      internalID: 1272080240
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_15
+      name: Player_Revive_15
       rect:
         serializedVersion: 2
         x: 960
-        y: 8
+        y: 0
         width: 64
-        height: 32
+        height: 52
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -434,20 +434,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a8385c1204a5067469164a03e5b84a16
-      internalID: 952416002
+      spriteID: f8e51a3c3d7e49d4b9cb064ee0d6dd15
+      internalID: 2084538689
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_16
+      name: Player_Revive_16
       rect:
         serializedVersion: 2
         x: 1024
-        y: 8
+        y: 0
         width: 64
-        height: 32
+        height: 52
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -455,20 +455,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c50d591a5d3b60b4a94be0f07519d173
-      internalID: 963363044
+      spriteID: e3772cde58fb5b240824cd2030f66be0
+      internalID: 1611392792
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_17
+      name: Player_Revive_17
       rect:
         serializedVersion: 2
         x: 1088
-        y: 8
+        y: 0
         width: 64
-        height: 32
+        height: 52
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -476,20 +476,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e520125cf36ca10449681240b855c79f
-      internalID: -438145290
+      spriteID: 84b47fb3ea036924a987564cdd51604c
+      internalID: -927631847
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_18
+      name: Player_Revive_18
       rect:
         serializedVersion: 2
         x: 1152
-        y: 8
+        y: 0
         width: 64
-        height: 32
+        height: 52
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -497,8 +497,113 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 464b93972f1cb29449376b43a0ac28de
-      internalID: -1201212168
+      spriteID: b29705c881fd1a745bc2ce44a820ae7d
+      internalID: 1270977772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Revive_19
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 0
+        width: 64
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59caea7b789fa424b88dc3faf86ff152
+      internalID: 1212787742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Revive_20
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 64
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68674a2c8ddbdfe4ab6be1caa91f8767
+      internalID: 1706419150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Revive_21
+      rect:
+        serializedVersion: 2
+        x: 1344
+        y: 0
+        width: 64
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c63c4e6aee77064597b2ea0bf51f06e
+      internalID: -71285389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Revive_22
+      rect:
+        serializedVersion: 2
+        x: 1408
+        y: 0
+        width: 64
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24a4cc0477829664a8d683d6ec0aec1c
+      internalID: 1246940969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Revive_23
+      rect:
+        serializedVersion: 2
+        x: 1472
+        y: 0
+        width: 64
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5a1e12470366ef48ba2f2e58cd77b0d
+      internalID: -483239864
       vertices: []
       indices: 
       edges: []
@@ -514,25 +619,30 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Assassin_Attack_7: -2126090765
-      Assassin_Attack_10: -44689779
-      Assassin_Attack_18: -1201212168
-      Assassin_Attack_12: -1952540846
-      Assassin_Attack_16: 963363044
-      Assassin_Attack_14: -843540363
-      Assassin_Attack_13: 466875358
-      Assassin_Attack_1: -225345891
-      Assassin_Attack_8: 2032498706
-      Assassin_Attack_0: -1181663500
-      Assassin_Attack_6: -1148480624
-      Assassin_Attack_11: 456950350
-      Assassin_Attack_5: -1551171854
-      Assassin_Attack_3: 668192541
-      Assassin_Attack_9: 871652753
-      Assassin_Attack_4: -1856554757
-      Assassin_Attack_2: -39853655
-      Assassin_Attack_15: 952416002
-      Assassin_Attack_17: -438145290
+      Player_Revive_23: -483239864
+      Player_Revive_9: -1665972552
+      Player_Revive_14: 1272080240
+      Player_Revive_7: -1004420228
+      Player_Revive_19: 1212787742
+      Player_Revive_20: 1706419150
+      Player_Revive_18: 1270977772
+      Player_Revive_15: 2084538689
+      Player_Revive_17: -927631847
+      Player_Revive_4: -820010106
+      Player_Revive_13: 1236775922
+      Player_Revive_3: 210944329
+      Player_Revive_2: -120678826
+      Player_Revive_6: -1126528913
+      Player_Revive_10: -2135587199
+      Player_Revive_21: -71285389
+      Player_Revive_8: -1215629206
+      Player_Revive_22: 1246940969
+      Player_Revive_16: 1611392792
+      Player_Revive_1: -158000944
+      Player_Revive_12: 70776999
+      Player_Revive_11: -1647744350
+      Player_Revive_5: 1213100283
+      Player_Revive_0: -619010887
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

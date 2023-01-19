@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 444a11ad84b4d2249abc55074cce9681
+guid: 94b29163322ac714aadfcdb2c781b7c3
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,7 +105,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Assassin_Attack_0
+      name: Spearman_Attack_0
       rect:
         serializedVersion: 2
         x: 0
@@ -119,14 +119,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 253cc5c2138fd4f458f126e766541050
-      internalID: -1181663500
+      spriteID: 569cb69855a137e409cea7487421c7dd
+      internalID: -337786589
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_1
+      name: Spearman_Attack_1
       rect:
         serializedVersion: 2
         x: 64
@@ -140,14 +140,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bfa333aa4873d5c47a3b3e025ec4b0ba
-      internalID: -225345891
+      spriteID: f8eb3b3c5a38e8844aae30b2608e4d24
+      internalID: -2116070908
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_2
+      name: Spearman_Attack_2
       rect:
         serializedVersion: 2
         x: 128
@@ -161,14 +161,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 68b8e432e8a8cfe4e9336b01fedbe5dd
-      internalID: -39853655
+      spriteID: f12c7c69f0b7b454b8ed5fb94b313fbb
+      internalID: 982628239
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_3
+      name: Spearman_Attack_3
       rect:
         serializedVersion: 2
         x: 192
@@ -182,14 +182,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a4b5119ff46a9f45bec48b0e8715840
-      internalID: 668192541
+      spriteID: 47386145de1b1e144a3a52d4262ff73e
+      internalID: 1558455039
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_4
+      name: Spearman_Attack_4
       rect:
         serializedVersion: 2
         x: 256
@@ -203,14 +203,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2bced536040b42b4f9a544452c0811f6
-      internalID: -1856554757
+      spriteID: c3aedeab57de9234a975f638e9b34205
+      internalID: 1790562349
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_5
+      name: Spearman_Attack_5
       rect:
         serializedVersion: 2
         x: 320
@@ -224,14 +224,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3309037c4b6ce7f428013ef33f6338fc
-      internalID: -1551171854
+      spriteID: ac72a497ee640814bb05a7d7d9ced428
+      internalID: -1657875898
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_6
+      name: Spearman_Attack_6
       rect:
         serializedVersion: 2
         x: 384
@@ -245,14 +245,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 006ddd48f891272489fbb661f8bb62a5
-      internalID: -1148480624
+      spriteID: 57ab6282d1dee5d40832c1ae2459333c
+      internalID: -1135649394
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_7
+      name: Spearman_Attack_7
       rect:
         serializedVersion: 2
         x: 448
@@ -266,14 +266,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d35bec97d19e3564d8865fd069f267ae
-      internalID: -2126090765
+      spriteID: dbe8caf2642a09247b4f892b882a1b17
+      internalID: 1772855068
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_8
+      name: Spearman_Attack_8
       rect:
         serializedVersion: 2
         x: 512
@@ -287,14 +287,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c994607b3bc202749b0ccf480f3c241c
-      internalID: 2032498706
+      spriteID: 52dbacff6c562594daa64b5d75a370ed
+      internalID: -1202505207
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_9
+      name: Spearman_Attack_9
       rect:
         serializedVersion: 2
         x: 576
@@ -308,14 +308,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e9dfe02712101324b8c1dd7a1a663719
-      internalID: 871652753
+      spriteID: 1187e80efc14cc947b35ac6a6add3cd1
+      internalID: -472554209
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_10
+      name: Spearman_Attack_10
       rect:
         serializedVersion: 2
         x: 640
@@ -329,14 +329,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d5797f27ce3af2d4fa83ca0cb6de3f98
-      internalID: -44689779
+      spriteID: f8db64fd1ad48ed47b772ef0aa63d73d
+      internalID: -2057743677
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_11
+      name: Spearman_Attack_11
       rect:
         serializedVersion: 2
         x: 704
@@ -350,14 +350,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 734d7df9c953b98479d6ea5e2889d0bc
-      internalID: 456950350
+      spriteID: 53d04f0726a67ef48a541275f8af49d7
+      internalID: -409791844
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_12
+      name: Spearman_Attack_12
       rect:
         serializedVersion: 2
         x: 768
@@ -371,14 +371,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4f60443a00376cb4e95a6e8b05e10d81
-      internalID: -1952540846
+      spriteID: 71deebcc817e4244097d6a2f8e38866f
+      internalID: -642702797
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_13
+      name: Spearman_Attack_13
       rect:
         serializedVersion: 2
         x: 832
@@ -392,14 +392,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7314968f1aa3e874b89c1299b0266434
-      internalID: 466875358
+      spriteID: 740b1349711ad7c4a8dc27a9440ce5f2
+      internalID: 853609050
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_14
+      name: Spearman_Attack_14
       rect:
         serializedVersion: 2
         x: 896
@@ -413,14 +413,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 699076c36518e894a842a9c8f419c129
-      internalID: -843540363
+      spriteID: bb5b0a357c70c1b4da6b1466f4c3b135
+      internalID: 786837054
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_15
+      name: Spearman_Attack_15
       rect:
         serializedVersion: 2
         x: 960
@@ -434,14 +434,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a8385c1204a5067469164a03e5b84a16
-      internalID: 952416002
+      spriteID: 4cf94307f763c5144bbb05a8bdb0ab24
+      internalID: 2079248548
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_16
+      name: Spearman_Attack_16
       rect:
         serializedVersion: 2
         x: 1024
@@ -455,14 +455,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c50d591a5d3b60b4a94be0f07519d173
-      internalID: 963363044
+      spriteID: 75297e8391239d449b7ba700cb22a8f0
+      internalID: -1236007829
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_17
+      name: Spearman_Attack_17
       rect:
         serializedVersion: 2
         x: 1088
@@ -476,14 +476,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e520125cf36ca10449681240b855c79f
-      internalID: -438145290
+      spriteID: 374df5a953e031e42b0b52f33d451d95
+      internalID: 1417270907
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Assassin_Attack_18
+      name: Spearman_Attack_18
       rect:
         serializedVersion: 2
         x: 1152
@@ -497,8 +497,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 464b93972f1cb29449376b43a0ac28de
-      internalID: -1201212168
+      spriteID: 17fc42366c0b48d4fb0d92808e407940
+      internalID: 1194610024
       vertices: []
       indices: 
       edges: []
@@ -514,25 +514,25 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Assassin_Attack_7: -2126090765
-      Assassin_Attack_10: -44689779
-      Assassin_Attack_18: -1201212168
-      Assassin_Attack_12: -1952540846
-      Assassin_Attack_16: 963363044
-      Assassin_Attack_14: -843540363
-      Assassin_Attack_13: 466875358
-      Assassin_Attack_1: -225345891
-      Assassin_Attack_8: 2032498706
-      Assassin_Attack_0: -1181663500
-      Assassin_Attack_6: -1148480624
-      Assassin_Attack_11: 456950350
-      Assassin_Attack_5: -1551171854
-      Assassin_Attack_3: 668192541
-      Assassin_Attack_9: 871652753
-      Assassin_Attack_4: -1856554757
-      Assassin_Attack_2: -39853655
-      Assassin_Attack_15: 952416002
-      Assassin_Attack_17: -438145290
+      Spearman_Attack_12: -642702797
+      Spearman_Attack_2: 982628239
+      Spearman_Attack_6: -1135649394
+      Spearman_Attack_11: -409791844
+      Spearman_Attack_7: 1772855068
+      Spearman_Attack_3: 1558455039
+      Spearman_Attack_5: -1657875898
+      Spearman_Attack_8: -1202505207
+      Spearman_Attack_0: -337786589
+      Spearman_Attack_9: -472554209
+      Spearman_Attack_16: -1236007829
+      Spearman_Attack_13: 853609050
+      Spearman_Attack_15: 2079248548
+      Spearman_Attack_1: -2116070908
+      Spearman_Attack_17: 1417270907
+      Spearman_Attack_18: 1194610024
+      Spearman_Attack_4: 1790562349
+      Spearman_Attack_14: 786837054
+      Spearman_Attack_10: -2057743677
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
