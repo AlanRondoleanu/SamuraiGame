@@ -381,7 +381,7 @@ Animator:
   m_GameObject: {fileID: 9182693824537107213}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 149212d7d7cb3b049b935200f1ff21e9, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7494b883e36b5ae40adf95291d576495, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -451,7 +451,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 50
-  dead: 0
   dashCutEffect: {fileID: 3040048907759721782, guid: 8fac69b02642dab4ca926cfafb90b41b, type: 3}
   dashKillEffect: {fileID: 3119570145073471963, guid: cc2ac18ba076b4d4aa5e7388dc7e27c6, type: 3}
   healthBar: {fileID: 1919856317}

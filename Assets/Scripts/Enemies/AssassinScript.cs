@@ -23,6 +23,7 @@ public class AssassinScript : MonoBehaviour
         enemy = GetComponent<EnemyScript>();
         animator = GetComponent<Animator>();
 
+        rangedTimer = Random.Range(0.5f, MAX_RANGED_TIMER);
         InvokeRepeating("changeDirection", 0, 2);
     }
 
@@ -32,8 +33,8 @@ public class AssassinScript : MonoBehaviour
         if (enemy.getDead() == false)
         {
             // Ranged Timer
-            rangedTimer += Time.deltaTime;
-            if (rangedTimer >= MAX_RANGED_TIMER)
+            rangedTimer -= Time.deltaTime;
+            if (rangedTimer <= 0)
             {
                 enemy.turnTowardsDirection(player.transform.position);
                 animator.SetTrigger("Attack");
@@ -43,12 +44,13 @@ public class AssassinScript : MonoBehaviour
                 Invoke("RangedAttack", 0.4f);
                 Invoke("startMoving", 0.8f);
 
-                rangedTimer = 0;
+                rangedTimer = MAX_RANGED_TIMER;
             }
 
+            // Movement
             if (moving)
             {
-                // Movement
+                // Diagonal movement slower
                 if (currentDirection.x != 0 && currentDirection.y != 0)
                 {
                     transform.Translate(currentDirection * (speed * 0.5f) * Time.deltaTime);

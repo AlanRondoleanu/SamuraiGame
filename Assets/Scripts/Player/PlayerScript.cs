@@ -23,13 +23,17 @@ public class PlayerScript : MonoBehaviour
     private const float DEFLECT_DISTANCE = 0.5f;
     private float health = 100;
     private const float MAX_HEALTH = 100;
+    private bool alive = true;
 
     // Melee
     public GameObject playerMeleeHitBox;
 
     private float meleeAttackTimer;
-    private const float ATTACK_LIFETIME = 0.2f;
+    private const float MELEE_LIFETIME = 0.2f;
+    private float meleeCooldownTimer;
+    private const float MELEE_COOLDOWN = 0.5f;
     private bool isAttacking = false;
+    private bool isMeleeReady = true;
 
     // Deflect
     public GameObject deflectHitBox;
@@ -45,6 +49,9 @@ public class PlayerScript : MonoBehaviour
     public GameObject playerProjectile;
 
     private const float MAX_PROJECTILE_SPEED = 25;
+    private float rangedCooldownTimer;
+    private const float RANGED_COOLDOWN = 0.3f;
+    private bool isRangedReady = true;
 
     // Dash Attack
     private float dashDistance = 1f;
@@ -56,6 +63,11 @@ public class PlayerScript : MonoBehaviour
     private float dashCooldownTimer;
     private const float DASH_COOLDOWN = 2f;
     private bool isDashReady = true;
+
+    // Invulnerability
+    private bool immune = false; 
+    private float immuneLifetime;
+    private const float IMMUNE_LIFETIME = 0.2f;
 
     // Start is called before the first frame update
     void Start()
@@ -69,69 +81,93 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Lifetimer Timers
-        meleeAttackTimer -= Time.deltaTime;
-        if (meleeAttackTimer <= 0.0f)
+        if (alive)
         {
-            playerMeleeHitBox.gameObject.SetActive(false);
-            isAttacking = false;
-        }
-        deflectTimer -= Time.deltaTime;
-        if (deflectTimer <= 0.0f)
-        {
-            deflectHitBox.gameObject.SetActive(false);
-            isDeflectUp = false;
-            animator.SetBool("DeflectUp", false);
-        }
-
-        // Cooldown Timers
-        deflectCooldownTimer -= Time.deltaTime;
-        if (deflectCooldownTimer <= 0.0f)
-        {
-            isDeflectReady = true;
-        }
-        dashCooldownTimer -= Time.deltaTime;
-        if (dashCooldownTimer <= 0.0f)
-        {
-            isDashReady = true;
-        }
-
-        // Rotate Melee Direction
-        if (playerMeleeHitBox.active == false)
-        {
-            Vector3 mousePos = Input.mousePosition;
-            mousePos.z = mainCam.transform.position.z;
-            Vector3 mouseWorldPos = mainCam.ScreenToWorldPoint(mousePos);
-
-            Vector3 direction = mouseWorldPos - transform.position;
-            direction.z = 0;
-            direction = direction.normalized;
-
-            // Melee
-            Vector3 desiredPos = transform.position + direction * MELEE_DISTANCE;
-            playerMeleeHitBox.transform.position = Vector3.MoveTowards(playerMeleeHitBox.transform.position, desiredPos, 1000 * Time.deltaTime);
-            // Deflect
-            Vector3 desiredPos2 = transform.position + direction * DEFLECT_DISTANCE;
-            deflectHitBox.transform.position = Vector3.MoveTowards(playerMeleeHitBox.transform.position, desiredPos2, 1000 * Time.deltaTime);
-
-            meleeEffectObject.transform.position = playerMeleeHitBox.transform.position;
-        }
-
-        // Dash movement when dash is activated
-        if (isDashing)
-        {
-            // Raycasting wall detection
-            detectWalls(dashDirection);
-
-            if (isDashing)
-                transform.position = Vector3.MoveTowards(transform.position, transform.position + dashDirection * dashDistance, dashSpeed * Time.deltaTime);
-
-            // Dash timer
-            dashTimer -= Time.deltaTime;
-            if (dashTimer <= 0)
+            if (health <= 0)
             {
-                isDashing = false;
-                animator.SetBool("Dashing", false);
+                alive = false;
+                animator.SetBool("Dead", true);
+            }
+
+            // Lifetimer Timers
+            meleeAttackTimer -= Time.deltaTime;
+            if (meleeAttackTimer <= 0.0f)
+            {
+                playerMeleeHitBox.gameObject.SetActive(false);
+                isAttacking = false;
+            }
+            deflectTimer -= Time.deltaTime;
+            if (deflectTimer <= 0.0f)
+            {
+                deflectHitBox.gameObject.SetActive(false);
+                isDeflectUp = false;
+                animator.SetBool("DeflectUp", false);
+            }
+            immuneLifetime -= Time.deltaTime;
+            if (immuneLifetime <= 0.0f)
+            {
+                immune = false;
+            }
+
+            // Cooldown Timers
+            deflectCooldownTimer -= Time.deltaTime;
+            if (deflectCooldownTimer <= 0.0f)
+            {
+                isDeflectReady = true;
+            }
+            dashCooldownTimer -= Time.deltaTime;
+            if (dashCooldownTimer <= 0.0f)
+            {
+                isDashReady = true;
+            }
+            meleeCooldownTimer -= Time.deltaTime;
+            if (meleeCooldownTimer <= 0.0f)
+            {
+                isMeleeReady = true;
+            }
+            rangedCooldownTimer -= Time.deltaTime;
+            if (rangedCooldownTimer <= 0.0f)
+            {
+                isRangedReady = true;
+            }
+
+            // Rotate Melee Direction
+            if (playerMeleeHitBox.activeInHierarchy == false)
+            {
+                Vector3 mousePos = Input.mousePosition;
+                mousePos.z = mainCam.transform.position.z;
+                Vector3 mouseWorldPos = mainCam.ScreenToWorldPoint(mousePos);
+
+                Vector3 direction = mouseWorldPos - transform.position;
+                direction.z = 0;
+                direction = direction.normalized;
+
+                // Melee
+                Vector3 desiredPos = transform.position + direction * MELEE_DISTANCE;
+                playerMeleeHitBox.transform.position = Vector3.MoveTowards(playerMeleeHitBox.transform.position, desiredPos, 1000 * Time.deltaTime);
+                // Deflect
+                Vector3 desiredPos2 = transform.position + direction * DEFLECT_DISTANCE;
+                deflectHitBox.transform.position = Vector3.MoveTowards(playerMeleeHitBox.transform.position, desiredPos2, 1000 * Time.deltaTime);
+
+                meleeEffectObject.transform.position = playerMeleeHitBox.transform.position;
+            }
+
+            // Dash movement when dash is activated
+            if (isDashing)
+            {
+                // Raycasting wall detection
+                detectWalls(dashDirection);
+
+                if (isDashing)
+                    transform.position = Vector3.MoveTowards(transform.position, transform.position + dashDirection * dashDistance, dashSpeed * Time.deltaTime);
+
+                // Dash timer
+                dashTimer -= Time.deltaTime;
+                if (dashTimer <= 0)
+                {
+                    isDashing = false;
+                    animator.SetBool("Dashing", false);
+                }
             }
         }
     }
@@ -148,11 +184,13 @@ public class PlayerScript : MonoBehaviour
 
     public void MeleeAttack()
     {
-        if (meleeAttackTimer <= 0.0f)
+        if (isMeleeReady)
         {
             playerMeleeHitBox.gameObject.SetActive(true);
-            meleeAttackTimer = ATTACK_LIFETIME;
+            meleeAttackTimer = MELEE_LIFETIME;
+            meleeCooldownTimer = MELEE_COOLDOWN;
             isAttacking = true;
+            isMeleeReady = false;
 
             animator.SetTrigger("Attack");
             meleeEffect.SetTrigger("MeleeEffect");
@@ -176,20 +214,26 @@ public class PlayerScript : MonoBehaviour
 
     public void RangedAttack()
     {
-        GameObject projectile = Instantiate(playerProjectile);
+        if (isRangedReady)
+        {
+            GameObject projectile = Instantiate(playerProjectile);
 
-        // Rotation Logic for the projectile
-        Vector3 mousePosition = mainCam.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 direction = mousePosition - transform.position;
-        Vector3 rotation = transform.position - mousePosition;
-        // Rotation
-        float projectileRotation = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
-        // Direction
-        Vector2 projectileDirection = new Vector3(direction.x, direction.y).normalized * MAX_PROJECTILE_SPEED;
+            // Rotation Logic for the projectile
+            Vector3 mousePosition = mainCam.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 direction = mousePosition - transform.position;
+            Vector3 rotation = transform.position - mousePosition;
+            // Rotation
+            float projectileRotation = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
+            // Direction
+            Vector2 projectileDirection = new Vector3(direction.x, direction.y).normalized * MAX_PROJECTILE_SPEED;
 
-        projectile.GetComponent<ProjectileScript>().ReadyProjectile(transform.position, projectileDirection, projectileRotation, GameData.instance.rangedDamage);
+            projectile.GetComponent<ProjectileScript>().ReadyProjectile(transform.position, projectileDirection, projectileRotation, GameData.instance.rangedDamage);
 
-        animator.SetTrigger("Attack");
+            animator.SetTrigger("Attack");
+
+            isRangedReady = false;
+            rangedCooldownTimer = RANGED_COOLDOWN;
+        }
     }
 
     public void DashAttack()
@@ -214,6 +258,10 @@ public class PlayerScript : MonoBehaviour
             Vector3 rotation = transform.position - mousePosition;
             float smokeRotation = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
             smoke.transform.rotation = Quaternion.Euler(smokeRotation, -90, 90);
+
+            // Immunity while dashing
+            immuneLifetime = IMMUNE_LIFETIME;
+            immune = true;
         }
 
     }
@@ -238,9 +286,17 @@ public class PlayerScript : MonoBehaviour
         return isDeflectUp;
     }
 
+    public bool getAlive()
+    {
+        return alive;
+    }
+
     public void deflectSuccess()
     {
         animator.SetTrigger("Deflect");
+        immuneLifetime = IMMUNE_LIFETIME;
+        immune = true;
+        isDeflectReady = true;
     }
 
     public void changeStance()
@@ -265,21 +321,29 @@ public class PlayerScript : MonoBehaviour
                 isDashing = false;
                 animator.SetBool("Dashing", false);
             }
-            else if (hit.collider.tag == "Player")
-            {
-                Debug.Log("Player hit...");
-            }
             //Debug.DrawRay(new Vector2(transform.position.x, transform.position.y) + t_direction, t_direction, Color.red, 0.8f);
         }
     }
 
     public void TakeDamage( Vector3 t_enemyPos, float t_damage, float t_knockback)
     {
-        health -= t_damage;
-        rb.AddForce((transform.position - t_enemyPos).normalized * t_knockback);
+        if (immune == false)
+        {
+            health -= t_damage;
+            rb.AddForce((transform.position - t_enemyPos).normalized * t_knockback);
 
-        // Camera shake
-        mainCam.GetComponent<ScreenShake>().ShakeCamera(0.8f);
+            // Camera shake
+            mainCam.GetComponent<ScreenShake>().ShakeCamera(0.8f);
+
+            // Immunity frames
+            immuneLifetime = IMMUNE_LIFETIME;
+            immune = true;
+        }
+    }
+
+    public bool getImmune()
+    {
+        return immune;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -288,7 +352,7 @@ public class PlayerScript : MonoBehaviour
         {
             TakeDamage(collision.transform.position, GameData.instance.assassinDamage, GameData.instance.assassinKnockback);
         }
-        else if (collision.gameObject.tag == "EnemySpear")
+        else if (collision.gameObject.tag == "EnemySpear" && isDeflectUp == false)
         {
             TakeDamage(collision.transform.position, GameData.instance.spearmenDamage, GameData.instance.spearmenKnockback);
         }

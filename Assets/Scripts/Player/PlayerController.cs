@@ -7,27 +7,24 @@ public class PlayerController : MonoBehaviour
     private const float MAX_FLOW_SPEED = 5;
     private const float MAX_ROCK_SPEED = 3;
     private float speed = MAX_ROCK_SPEED;
-    private bool alive = true;
     private bool ready = false;
-    private Rigidbody2D rb;
     private PlayerScript player;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
-    private Camera mainCam;
+    private Color originalColor;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
         player = GetComponent<PlayerScript>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        originalColor = spriteRenderer.color;
         Invoke("playerReady", 1);
     }
 
     void Update()
     {
-        if (alive && ready)
+        if (player.getAlive() && ready)
         {
             // Key Events
             if (Input.GetKeyDown("q"))
@@ -45,7 +42,7 @@ public class PlayerController : MonoBehaviour
 
                 player.changeStance();
             }
-            else if (Input.GetKeyDown("e"))
+            else if ((Input.GetMouseButtonDown(1)) || Input.GetKeyDown("space"))
             {
                 if (player.getAttackMode() == PlayerScript.AttackMode.Flow)
                 {
@@ -60,7 +57,7 @@ public class PlayerController : MonoBehaviour
                     turnTowardsMouse();
                 }
             }
-            else if (Input.GetKeyDown("space"))
+            else if (Input.GetMouseButtonDown(0))
             {
                 if (player.getAttackMode() == PlayerScript.AttackMode.Flow)
                 {
@@ -88,7 +85,7 @@ public class PlayerController : MonoBehaviour
                 // Movement
                 if (xMove != 0 && zMove != 0)
                 {
-                    transform.Translate(velocity * Time.deltaTime);
+                    transform.Translate(velocity * 0.66f * Time.deltaTime);
                 }
                 else
                 {
@@ -117,6 +114,17 @@ public class PlayerController : MonoBehaviour
                         spriteRenderer.flipX = true;
                     }
                 }
+            }
+
+            if (player.getImmune())
+            {
+                Color temp = spriteRenderer.color;
+                temp.a = 0.5f;
+                spriteRenderer.color = temp;
+            }
+            else
+            {
+                spriteRenderer.color = originalColor;
             }
         }
     }
