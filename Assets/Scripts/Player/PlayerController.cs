@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private const float MAX_FLOW_SPEED = 5;
-    private const float MAX_ROCK_SPEED = 3;
+    private const float MAX_FLOW_SPEED = 4.5f;
+    private const float MAX_ROCK_SPEED = 3.5f;
     private float speed = MAX_ROCK_SPEED;
     private bool ready = false;
     private PlayerScript player;

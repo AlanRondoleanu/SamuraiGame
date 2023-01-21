@@ -12,6 +12,8 @@ public class PlayerScript : MonoBehaviour
     public GameObject meleeEffectObject;
     public Animator stanceEffect;
     public GameObject dashSmokeEffect;
+    public GameObject healthBar;
+    public CanvasRenderer bloodyScreen;
 
     private Camera mainCam;
     private Animator animator;
@@ -19,8 +21,6 @@ public class PlayerScript : MonoBehaviour
 
     // Player Vars
     private AttackMode attackMode;
-    private const float MELEE_DISTANCE = 1;
-    private const float DEFLECT_DISTANCE = 0.5f;
     private float health = 100;
     private const float MAX_HEALTH = 100;
     private bool alive = true;
@@ -32,6 +32,7 @@ public class PlayerScript : MonoBehaviour
     private const float MELEE_LIFETIME = 0.2f;
     private float meleeCooldownTimer;
     private const float MELEE_COOLDOWN = 0.5f;
+    private const float MELEE_DISTANCE = 1f;
     private bool isAttacking = false;
     private bool isMeleeReady = true;
 
@@ -42,6 +43,7 @@ public class PlayerScript : MonoBehaviour
     private const float DEFLECT_LIFETIME = 0.2f;
     private float deflectCooldownTimer;
     private const float DEFLECT_COOLDOWN = 1f;
+    private const float DEFLECT_DISTANCE = 0.5f;
     private bool isDeflectReady = true;
     private bool isDeflectUp = false;
 
@@ -50,7 +52,7 @@ public class PlayerScript : MonoBehaviour
 
     private const float MAX_PROJECTILE_SPEED = 25;
     private float rangedCooldownTimer;
-    private const float RANGED_COOLDOWN = 0.3f;
+    private const float RANGED_COOLDOWN = 0.8f;
     private bool isRangedReady = true;
 
     // Dash Attack
@@ -61,13 +63,17 @@ public class PlayerScript : MonoBehaviour
     private const float DASH_DURATION = 0.2f;
     private float dashTimer;
     private float dashCooldownTimer;
-    private const float DASH_COOLDOWN = 2f;
+    private const float DASH_COOLDOWN = 4f;
     private bool isDashReady = true;
 
     // Invulnerability
     private bool immune = false; 
     private float immuneLifetime;
     private const float IMMUNE_LIFETIME = 0.2f;
+
+    // Audio
+    public AudioClip[] clips;
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -76,6 +82,8 @@ public class PlayerScript : MonoBehaviour
         playerMeleeHitBox.transform.position = transform.position + transform.right * MELEE_DISTANCE;
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
+        bloodyScreen.SetColor(new Color(1, 1, 1, 0));
     }
 
     // Update is called once per frame
@@ -129,6 +137,14 @@ public class PlayerScript : MonoBehaviour
             if (rangedCooldownTimer <= 0.0f)
             {
                 isRangedReady = true;
+            }
+
+            // Bloody Screen
+            Color tempColor = bloodyScreen.GetColor();
+            if (tempColor != new Color(1,1,1,0))
+            {
+                tempColor.a -= 0.01f;
+                bloodyScreen.SetColor(tempColor);
             }
 
             // Rotate Melee Direction
@@ -187,6 +203,7 @@ public class PlayerScript : MonoBehaviour
         if (isMeleeReady)
         {
             playerMeleeHitBox.gameObject.SetActive(true);
+
             meleeAttackTimer = MELEE_LIFETIME;
             meleeCooldownTimer = MELEE_COOLDOWN;
             isAttacking = true;
@@ -194,6 +211,9 @@ public class PlayerScript : MonoBehaviour
 
             animator.SetTrigger("Attack");
             meleeEffect.SetTrigger("MeleeEffect");
+
+            // Audio
+            audioSource.PlayOneShot(clips[0]);
         }
     }
 
@@ -209,6 +229,9 @@ public class PlayerScript : MonoBehaviour
             isDeflectUp = true;
 
             animator.SetBool("DeflectUp", true);
+
+            // Audio
+            audioSource.PlayOneShot(clips[3]);
         }
     }
 
@@ -233,6 +256,9 @@ public class PlayerScript : MonoBehaviour
 
             isRangedReady = false;
             rangedCooldownTimer = RANGED_COOLDOWN;
+
+            // Audio
+            audioSource.PlayOneShot(clips[1]);
         }
     }
 
@@ -262,6 +288,9 @@ public class PlayerScript : MonoBehaviour
             // Immunity while dashing
             immuneLifetime = IMMUNE_LIFETIME;
             immune = true;
+
+            // Audio
+            audioSource.PlayOneShot(clips[2]);
         }
 
     }
@@ -294,9 +323,10 @@ public class PlayerScript : MonoBehaviour
     public void deflectSuccess()
     {
         animator.SetTrigger("Deflect");
-        immuneLifetime = IMMUNE_LIFETIME;
-        immune = true;
         isDeflectReady = true;
+
+        // Audio
+        audioSource.PlayOneShot(clips[4]);
     }
 
     public void changeStance()
@@ -313,7 +343,7 @@ public class PlayerScript : MonoBehaviour
 
     void detectWalls(Vector2 t_direction)
     {
-        RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y) + t_direction, t_direction, 0.5f);
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y) + t_direction, t_direction, 0.4f);
         if (hit.collider != null)
         {
             if (hit.collider.tag == "Wall")
@@ -321,7 +351,6 @@ public class PlayerScript : MonoBehaviour
                 isDashing = false;
                 animator.SetBool("Dashing", false);
             }
-            //Debug.DrawRay(new Vector2(transform.position.x, transform.position.y) + t_direction, t_direction, Color.red, 0.8f);
         }
     }
 
@@ -332,12 +361,23 @@ public class PlayerScript : MonoBehaviour
             health -= t_damage;
             rb.AddForce((transform.position - t_enemyPos).normalized * t_knockback);
 
+            // Health Bar
+            float percent = (health / MAX_HEALTH) * 1;
+            percent -= 1;
+            healthBar.GetComponent<EnemyHealthBar>().setMask(percent, true);
+
+            // Bloody screen
+            bloodyScreen.SetColor(new Color(1,1,1,1));
+
             // Camera shake
             mainCam.GetComponent<ScreenShake>().ShakeCamera(0.8f);
 
             // Immunity frames
             immuneLifetime = IMMUNE_LIFETIME;
             immune = true;
+
+            // Audio
+            audioSource.PlayOneShot(clips[5]);
         }
     }
 

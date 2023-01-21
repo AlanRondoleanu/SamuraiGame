@@ -56,11 +56,6 @@ public class ProjectileScript : MonoBehaviour
             // Gives extra damage to projectile
             damage *= GameData.instance.reflectDamageMultipler;
         }
-
-        if (collision.tag == "Wall")
-        {
-            Destroy(gameObject);
-        }
     }
 
     private void OnDestroy()

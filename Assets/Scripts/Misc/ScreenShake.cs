@@ -8,7 +8,13 @@ public class ScreenShake : MonoBehaviour
     public float duration = 1.0f;
     public AnimationCurve curve;
 
-    // Update is called once per frame
+    private GameObject player;
+
+    void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
+
     void Update()
     {
         if (start)
@@ -26,16 +32,22 @@ public class ScreenShake : MonoBehaviour
 
     IEnumerator Shake()
     {
-        Vector3 startPos = transform.position;
         float timePast = 0.0f;
 
         while (timePast < duration)
         {
             timePast += Time.deltaTime;
             float strength = curve.Evaluate(timePast / duration);
-            transform.position = startPos + Random.insideUnitSphere * strength;
+
+            Vector3 cameraPos = player.transform.position;
+            cameraPos.z = -10;
+            transform.position = cameraPos + Random.insideUnitSphere * strength;
+
             yield return null;
         }
-        transform.position = startPos;
+
+        Vector3 playerPos = player.transform.position;
+        playerPos.z = -10;
+        transform.position = playerPos;
     }
 }

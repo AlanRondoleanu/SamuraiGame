@@ -11,6 +11,7 @@ TagManager:
   - PlayerRangedAttack
   - Wall
   - EnemySpear
+  - Collidable
   layers:
   - Default
   - TransparentFX
@@ -47,6 +48,12 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: 
+    uniqueID: 3532709379
+    locked: 0
+  - name: Walls
+    uniqueID: 2785746315
     locked: 0
   - name: Enemies
     uniqueID: 2353377181

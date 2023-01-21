@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyScript : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class EnemyScript : MonoBehaviour
     public GameObject dashCutEffect;
     public GameObject dashKillEffect;
     public GameObject healthBar;
+    public AudioClip[] clips;
+    public GameObject blood;
 
     private bool dead = false;
     private float MAX_HEALTH;
@@ -16,12 +19,28 @@ public class EnemyScript : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
     private Camera mainCam;
+    private AudioSource audioSource;
+    private NavMeshAgent agent;
+    private bool navigating = false;
+
+    // Invulnerability
+    private bool immune = false;
+    private float immuneLifetime;
+    private const float IMMUNE_LIFETIME = 0.1f;
+
+    // Misc
+    private bool checkCollider = false;
 
     void Start()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
+        agent = GetComponent<NavMeshAgent>();
+
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
 
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         player = GameObject.FindGameObjectWithTag("Player");
@@ -35,26 +54,52 @@ public class EnemyScript : MonoBehaviour
         {
             animator.SetBool("Dead", true);
             dead = true;
+            checkCollider = true;
+            Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+            agent.ResetPath();
+        }
+
+        immuneLifetime -= Time.deltaTime;
+        if (immuneLifetime <= 0.0f)
+        {
+            immune = false;
+        }
+
+        // Turn off collider on death when the body is stationary
+        if (checkCollider == true && rb.velocity == Vector2.zero)
+        {
             GetComponent<Collider2D>().enabled = false;
+            GetComponent<NavMeshAgent>().enabled = false;
+            checkCollider = false;
         }
     }
 
     public void TakeDamage(float t_damage)
     {
-        if (dead == false)
+        if (dead == false && immune == false)
         {
-            health -= t_damage;
-            animator.SetTrigger("Hit");
-
             turnTowardsDirection(player.transform.position);
+
+            health -= t_damage;
+            immune = true;
+            immuneLifetime = IMMUNE_LIFETIME;
 
             // Health Bar
             float percent = (health / MAX_HEALTH) * 1;
             percent -= 1;
-            healthBar.GetComponent<EnemyHealthBar>().setMask(percent);
+            healthBar.GetComponent<EnemyHealthBar>().setMask(percent, false);
 
-            // Debug
-            Debug.Log(t_damage + " Damage");
+            // Animation
+            animator.SetTrigger("Hit");
+
+            // Blood Animation
+            GameObject bloodObj = Instantiate(blood);
+            bloodObj.transform.position = transform.position;
+            int randomBlood = Random.Range(1, 9);
+            bloodObj.GetComponent<Animator>().SetInteger("Blood", randomBlood);
+
+            // Audio
+            audioSource.PlayOneShot(clips[0]);
         }
     }
 
@@ -119,11 +164,34 @@ public class EnemyScript : MonoBehaviour
         {
             spriteRenderer.flipX = false;
         }
-
     }
 
     public bool getDead()
     {
         return dead;
+    }
+
+    public void goTo(Vector2 t_target, float t_speed)
+    {
+        if (dead == false)
+        {
+            agent.speed = t_speed;
+            agent.SetDestination(t_target);
+            navigating = true;
+        }
+    }
+
+    public void resetAgent()
+    {
+        if (dead == false)
+        {
+            agent.ResetPath();
+            navigating = false;
+        }
+    }
+
+    public bool getNavigating()
+    {
+        return navigating;
     }
 }

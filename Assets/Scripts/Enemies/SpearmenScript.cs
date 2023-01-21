@@ -7,26 +7,33 @@ public class SpearmenScript : MonoBehaviour
     public float axisThreshold = 0.1f;
     public GameObject spear;
     public GameObject dashSmokeEffect;
+    public AudioClip[] clips;
 
     private GameObject player;
     private EnemyScript enemy;
     private Animator animator;
     private Rigidbody2D rb;
     private PlayerScript playerScript;
+    private AudioSource audioSource;
 
     // Charge
     private float chargeLifetime;
     private const float CHARGE_LIFETIME = 0.5f;
     private float chargeCooldownTimer;
     private const float CHARGE_COOLDOWN = 3f;
-    private const float CHARGE_SPEED = 35;
+    private const float CHARGE_SPEED = 45;
     private bool isChargeReady = true;
 
     // Movement
     private bool moving;
     public float speed;
-    public float distance;
+    private float distance = 7;
     private Vector2 currentDirection;
+
+    // Stunned
+    private float stunTimer;
+    private const float STUN_DURATION = 2f;
+    private bool isStunned = false;
 
     void Start()
     {
@@ -35,8 +42,9 @@ public class SpearmenScript : MonoBehaviour
         enemy = GetComponent<EnemyScript>();
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
 
-        InvokeRepeating("goTowardsPlayer", 1, 3);
+        InvokeRepeating("goTowardsPlayer", 1, 2);
     }
 
     void Update()
@@ -55,15 +63,26 @@ public class SpearmenScript : MonoBehaviour
             {
                 isChargeReady = true;
             }
+            // Stun Duration timer
+            stunTimer -= Time.deltaTime;
+            if (stunTimer <= 0.0f)
+            {
+                animator.SetBool("Stunned", false);
+                isStunned = false;
+                spear.gameObject.SetActive(true);
+            }
 
             // Charge Ability
-            if (isChargeReady == true && 
+            if (isChargeReady == true &&
+                isStunned == false &&
                 playerScript.getDashing() == false && 
-                Mathf.Abs(player.transform.position.y - transform.position.y) <= axisThreshold)
+                Mathf.Abs(player.transform.position.y - transform.position.y) <= axisThreshold &&
+                Vector2.Distance(player.transform.position, transform.position) < distance)
             {
                 isChargeReady = false;
                 chargeCooldownTimer = CHARGE_COOLDOWN;
                 enemy.turnTowardsDirection(player.transform.position);
+                enemy.resetAgent();
 
                 Invoke("setChargeDelay", 1);
 
@@ -76,20 +95,12 @@ public class SpearmenScript : MonoBehaviour
             }
 
             // Movement
-            if (moving)
+            if (moving && enemy.getNavigating() == false)
             {
-                // Diagonal movement slower
-                if (currentDirection.x != 0 && currentDirection.y != 0)
-                {
-                    transform.Translate(currentDirection * (speed * 0.5f) * Time.deltaTime);
-                }
-                else
-                {
-                    transform.Translate(currentDirection * speed * Time.deltaTime);
-                }
+                transform.Translate(currentDirection * speed * Time.deltaTime);
             }
         }
-
+        // Handle spear tip damaging player
         if (enemy.getDead() == true)
         {
             spear.gameObject.SetActive(false);
@@ -98,78 +109,67 @@ public class SpearmenScript : MonoBehaviour
 
     void setChargeDelay()
     {
-        chargeLifetime = CHARGE_LIFETIME;
+        if (enemy.getDead() == false)
+        {
+            chargeLifetime = CHARGE_LIFETIME;
 
-        Vector2 chargeDirection;
-        if (player.transform.position.x > transform.position.x)
-        {
-            chargeDirection = Vector2.right;
-            spear.transform.localPosition = new Vector2(Mathf.Abs(spear.transform.localPosition.x), spear.transform.localPosition.y);
-        }
-        else
-        {
-            chargeDirection = Vector2.left;
-            spear.transform.localPosition = new Vector2(Mathf.Abs(spear.transform.localPosition.x) * -1, spear.transform.localPosition.y);
-        }
+            Vector2 chargeDirection;
+            if (player.transform.position.x > transform.position.x)
+            {
+                chargeDirection = Vector2.right;
+                spear.transform.localPosition = new Vector2(Mathf.Abs(spear.transform.localPosition.x), spear.transform.localPosition.y);
+            }
+            else
+            {
+                chargeDirection = Vector2.left;
+                spear.transform.localPosition = new Vector2(Mathf.Abs(spear.transform.localPosition.x) * -1, spear.transform.localPosition.y);
+            }
 
-        rb.velocity = (chargeDirection * CHARGE_SPEED);
+            rb.velocity = (chargeDirection * CHARGE_SPEED);
 
-        // Smoke effect
-        GameObject smoke = Instantiate(dashSmokeEffect);
-        smoke.transform.position = new Vector2(transform.position.x, transform.position.y - 0.2f);
-        if (chargeDirection == Vector2.right)
-        {
-            smoke.transform.rotation = Quaternion.Euler(180, -90, 90);
-        }
-        else
-        {
-            smoke.transform.rotation = Quaternion.Euler(0, -90, 90);
+            // Smoke effect
+            GameObject smoke = Instantiate(dashSmokeEffect);
+            smoke.transform.position = new Vector2(transform.position.x, transform.position.y - 0.2f);
+            if (chargeDirection == Vector2.right)
+            {
+                smoke.transform.rotation = Quaternion.Euler(180, -90, 90);
+            }
+            else
+            {
+                smoke.transform.rotation = Quaternion.Euler(0, -90, 90);
+            }
+
+            // Audio
+            audioSource.PlayOneShot(clips[0]);
         }
     }
 
     void setChargeAnimationDelay()
     {
-        animator.SetBool("Attacking", true);
+        if (enemy.getDead() == false)
+        {
+            animator.SetBool("Attacking", true);
+        }
     }
 
     void goTowardsPlayer()
     {
-        if (isChargeReady == true)
+        if (isChargeReady == true && enemy.getDead() == false)
         {
             moving = true;
             enemy.turnTowardsDirection(player.transform.position);
             animator.SetBool("Moving", true);
 
-            float x = Mathf.Abs(player.transform.position.x - transform.position.x);
-            float y = Mathf.Abs(player.transform.position.y - transform.position.y);
-
             // Get random direction towards player
-            if (Vector2.Distance(player.transform.position, transform.position) > distance)
+
+            RaycastHit2D hit = Physics2D.Raycast(transform.position,(player.transform.position - transform.position).normalized, distance);
+            if (hit.collider != null &&
+                hit.collider.tag != "Player")
             {
-                if (x > y)
-                {
-                    if (player.transform.position.x > transform.position.x)
-                    {
-                        currentDirection = Vector3.right;
-                    }
-                    else
-                    {
-                        currentDirection = Vector3.left;
-                    }
-                }
-                else
-                {
-                    if (player.transform.position.y > transform.position.y)
-                    {
-                        currentDirection = Vector3.up;
-                    }
-                    else
-                    {
-                        currentDirection = Vector3.down;
-                    }
-                }
+                enemy.goTo(player.transform.position, speed);
             }
-            else if (player.transform.position.y > transform.position.y)
+            else if (player.transform.position.y > transform.position.y &&
+                     Vector2.Distance(player.transform.position, transform.position) < distance)
             {
                 if (player.transform.position.x > transform.position.x)
                 {
@@ -203,6 +203,13 @@ public class SpearmenScript : MonoBehaviour
 
             // Animates the player to show successful deflect
             player.GetComponent<PlayerScript>().deflectSuccess();
+
+            // Stun Spearmen
+            isStunned = true;
+            stunTimer = STUN_DURATION;
+            animator.SetBool("Stunned", true);
+            spear.gameObject.SetActive(false);
+            enemy.resetAgent();
         }
     }
 }
