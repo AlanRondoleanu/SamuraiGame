@@ -21,7 +21,7 @@ public class PlayerScript : MonoBehaviour
 
     // Player Vars
     private AttackMode attackMode;
-    private float health = 100;
+    private float health;
     private const float MAX_HEALTH = 100;
     private bool alive = true;
 
@@ -56,7 +56,6 @@ public class PlayerScript : MonoBehaviour
     private bool isRangedReady = true;
 
     // Dash Attack
-    private float dashDistance = 1f;
     private float dashSpeed = 40f;
     private bool isDashing = false;
     private Vector3 dashDirection;
@@ -84,6 +83,9 @@ public class PlayerScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
         bloodyScreen.SetColor(new Color(1, 1, 1, 0));
+
+        GameManager.instance.setScene();
+        setHealth(GameManager.instance.getHealth());
     }
 
     // Update is called once per frame
@@ -95,6 +97,7 @@ public class PlayerScript : MonoBehaviour
             {
                 alive = false;
                 animator.SetBool("Dead", true);
+                GameManager.instance.displayRestartText();
             }
 
             // Lifetimer Timers
@@ -175,7 +178,7 @@ public class PlayerScript : MonoBehaviour
                 detectWalls(dashDirection);
 
                 if (isDashing)
-                    transform.position = Vector3.MoveTowards(transform.position, transform.position + dashDirection * dashDistance, dashSpeed * Time.deltaTime);
+                    transform.position = Vector3.MoveTowards(transform.position, transform.position + dashDirection, dashSpeed * Time.deltaTime);
 
                 // Dash timer
                 dashTimer -= Time.deltaTime;
@@ -384,6 +387,21 @@ public class PlayerScript : MonoBehaviour
     public bool getImmune()
     {
         return immune;
+    }
+
+    public float getHealth()
+    {
+        return health;
+    }
+
+    public void setHealth(float t_health)
+    {
+        health = t_health;
+
+        // Health Bar
+        float percent = (health / MAX_HEALTH) * 1;
+        percent -= 1;
+        healthBar.GetComponent<EnemyHealthBar>().setMask(percent, true);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

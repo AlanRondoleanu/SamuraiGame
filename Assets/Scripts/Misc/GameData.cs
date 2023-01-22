@@ -7,6 +7,7 @@ public class GameData : MonoBehaviour
     public static GameData instance;
 
     // Player
+    public float playerHealth;
     public float meleeDamage;
     public float meleeKnockback;
     public float dashDamage;
@@ -23,6 +24,10 @@ public class GameData : MonoBehaviour
     // Spearmen
     public float spearmenDamage;
     public float spearmenKnockback;
+
+    // Skull
+    public float skullDamage;
+    public float skullKnockback;
 
     private void Awake()
     {

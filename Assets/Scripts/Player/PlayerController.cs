@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     private PlayerScript player;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
+    public ParticleSystem particleSystem;
+    private ParticleSystemRenderer psr;
     private Color originalColor;
 
     void Start()
@@ -18,7 +20,9 @@ public class PlayerController : MonoBehaviour
         player = GetComponent<PlayerScript>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        psr = particleSystem.GetComponent<ParticleSystemRenderer>();
         originalColor = spriteRenderer.color;
+        particleSystem.Stop();
         Invoke("playerReady", 1);
     }
 
@@ -33,16 +37,18 @@ public class PlayerController : MonoBehaviour
                 {
                     player.ChangeAttackMode(PlayerScript.AttackMode.Rock);
                     speed = MAX_ROCK_SPEED;
+                    particleSystem.Stop();
                 }
                 else if (player.getAttackMode() == PlayerScript.AttackMode.Rock)
                 {
                     player.ChangeAttackMode(PlayerScript.AttackMode.Flow);
                     speed = MAX_FLOW_SPEED;
+                    particleSystem.Play();
                 }
 
                 player.changeStance();
             }
-            else if ((Input.GetMouseButtonDown(1)) || Input.GetKeyDown("space"))
+            else if ((Input.GetMouseButtonDown(1)))
             {
                 if (player.getAttackMode() == PlayerScript.AttackMode.Flow)
                 {
@@ -108,10 +114,14 @@ public class PlayerController : MonoBehaviour
                     if (xMove > 0)
                     {
                         spriteRenderer.flipX = false;
+                        Vector3 flip = new Vector3(0, 0, 0);
+                        psr.flip = flip;
                     }
                     else if (xMove < 0)
                     {
                         spriteRenderer.flipX = true;
+                        Vector3 flip = new Vector3(1, 0, 0);
+                        psr.flip = flip;
                     }
                 }
             }

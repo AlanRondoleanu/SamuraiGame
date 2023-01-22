@@ -19,7 +19,7 @@ public class AssassinScript : MonoBehaviour
     private Vector2 currentDirection = Vector2.left;
     private bool moving = true;
     private float attackRange = 9;
-    private float movementRange = 6;
+    private float movementRange = 7;
 
     // Start is called before the first frame update
     void Start()
@@ -60,7 +60,15 @@ public class AssassinScript : MonoBehaviour
             {
                 animator.SetBool("Moving", true);
 
-                transform.Translate(currentDirection * speed * Time.deltaTime);
+                if (currentDirection.x != 0 && currentDirection.y != 0)
+                {
+                    transform.Translate(currentDirection * 0.66f * speed * Time.deltaTime);
+                }
+                else
+                {
+                    transform.Translate(currentDirection * speed * Time.deltaTime);
+
+                }
 
                 Vector2 dir = new Vector2(transform.position.x, transform.position.y) + currentDirection;
                 enemy.turnTowardsDirection(dir);
