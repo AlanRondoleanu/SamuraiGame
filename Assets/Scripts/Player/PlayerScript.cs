@@ -414,6 +414,10 @@ public class PlayerScript : MonoBehaviour
         {
             TakeDamage(collision.transform.position, GameData.instance.spearmenDamage, GameData.instance.spearmenKnockback);
         }
+        else if (collision.gameObject.tag == "FireBreath")
+        {
+            TakeDamage(collision.transform.position, GameData.instance.demonDamage, GameData.instance.demonKnockback);
+        }
     }
 }
 

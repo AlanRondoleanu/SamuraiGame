@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(level);
             nextLevelReady = false;
 
-            audioSource.clip = muisc[level+1];
+            audioSource.clip = muisc[level];
             audioSource.Play();
         }
     }
@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
 
     public float getHealth()
     {
-        if (level == 0)
+        if (playerHealth == 0)
         {
             return GameData.instance.playerHealth;
         }
@@ -82,11 +82,11 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         playerHealth = GameData.instance.playerHealth;
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
 
         door.gameObject.SetActive(false);
         nextLevelReady = false;
-        level = 0;
+        level = 1;
 
         restartText.SetActive(false);
 

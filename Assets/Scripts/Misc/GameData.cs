@@ -29,6 +29,10 @@ public class GameData : MonoBehaviour
     public float skullDamage;
     public float skullKnockback;
 
+    // Demon
+    public float demonDamage;
+    public float demonKnockback;
+
     private void Awake()
     {
         if (instance != null && instance != this)
