@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         playerHealth = GameData.instance.playerHealth;
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(3);
 
         door.gameObject.SetActive(false);
         nextLevelReady = false;

@@ -12,10 +12,11 @@ public class SkullScript : MonoBehaviour
     public AudioClip[] clips;
 
     public float speed = 3;
-    public float distance = 5;
+    private float distance = 5;
     private float backAwayDistance = 3;
+    private float attackDistance = 5.5f;
 
-    private const float ATTACK_COOLDOWN = 5.0f;
+    private const float ATTACK_COOLDOWN = 4.0f;
     private float attackTimer = ATTACK_COOLDOWN;
     private bool isAttackReady = false;
     private bool isAttacking = false;
@@ -43,9 +44,11 @@ public class SkullScript : MonoBehaviour
     {
         // Cooldown Timer
         lifetimeTimer -= Time.deltaTime;
-        if (lifetimeTimer <= 0)
+        if (lifetimeTimer <= 0 && attackActive == true)
         {
             attackActive = false;
+            isAttacking = false;
+            animator.SetBool("Moving", true);
         }
 
         // Cooldown Timer
@@ -59,12 +62,10 @@ public class SkullScript : MonoBehaviour
         {
 
             if (isAttacking == false &&
-                Vector2.Distance(player.transform.position, transform.position) > distance + 1)
+                Vector2.Distance(player.transform.position, transform.position) > distance)
             {
                 enemy.goTo(player.transform.position, speed);
                 enemy.turnTowardsDirection(player.transform.position);
-
-                animator.SetBool("Moving", true);
             }
             else if (Vector2.Distance(player.transform.position, transform.position) < distance)
             {
@@ -72,7 +73,7 @@ public class SkullScript : MonoBehaviour
             }
 
 
-            if (Vector2.Distance(player.transform.position, transform.position) < backAwayDistance)
+            if (isAttackReady == false && Vector2.Distance(player.transform.position, transform.position) < backAwayDistance)
             {
                 Vector3 direction = player.transform.position - transform.position;
                 direction = direction.normalized * 1.5f;
@@ -80,7 +81,7 @@ public class SkullScript : MonoBehaviour
                 transform.Translate(-direction * Time.deltaTime);
             }
 
-            if (isAttackReady == true && Vector2.Distance(player.transform.position, transform.position) < distance)
+            if (isAttackReady == true && Vector2.Distance(player.transform.position, transform.position) < attackDistance)
             {
                 enemy.turnTowardsDirection(player.transform.position);
                 animator.SetBool("Moving", false);
@@ -106,7 +107,6 @@ public class SkullScript : MonoBehaviour
             Vector3 direction = (target - transform.position).normalized;
             rb.velocity = (direction * ATTACK_SPEED);
 
-            isAttacking = false;
             attackActive = true;
             lifetimeTimer = ATTACK_LIFETIME;
 

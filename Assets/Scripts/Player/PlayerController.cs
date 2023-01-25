@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private const float MAX_FLOW_SPEED = 4.5f;
+    private const float MAX_FLOW_SPEED = 4.25f;
     private const float MAX_ROCK_SPEED = 3.5f;
     private float speed = MAX_ROCK_SPEED;
     private bool ready = false;
@@ -102,10 +102,12 @@ public class PlayerController : MonoBehaviour
                 if (xMove != 0 || zMove != 0)
                 {
                     animator.SetBool("Running", true);
+                    particleSystem.enableEmission = true;
                 }
                 else
                 {
                     animator.SetBool("Running", false);
+                    particleSystem.enableEmission = false;
                 }
 
                 // Sprite Flip

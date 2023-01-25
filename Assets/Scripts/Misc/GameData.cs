@@ -32,6 +32,7 @@ public class GameData : MonoBehaviour
     // Demon
     public float demonDamage;
     public float demonKnockback;
+    public float demonRangedDamage;
 
     private void Awake()
     {

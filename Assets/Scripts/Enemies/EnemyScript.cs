@@ -196,4 +196,9 @@ public class EnemyScript : MonoBehaviour
     {
         return navigating;
     }
+
+    public float getHealth()
+    {
+        return health;
+    }    
 }

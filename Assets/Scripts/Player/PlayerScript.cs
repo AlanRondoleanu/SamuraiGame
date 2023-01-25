@@ -408,7 +408,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "EnemyAttack")
         {
-            TakeDamage(collision.transform.position, GameData.instance.assassinDamage, GameData.instance.assassinKnockback);
+            TakeDamage(collision.transform.position, collision.gameObject.GetComponent<ProjectileScript>().getDamage(), GameData.instance.assassinKnockback);
         }
         else if (collision.gameObject.tag == "EnemySpear" && isDeflectUp == false)
         {

@@ -21,7 +21,7 @@ public class SpearmenScript : MonoBehaviour
     private const float CHARGE_LIFETIME = 0.5f;
     private float chargeCooldownTimer;
     private const float CHARGE_COOLDOWN = 3f;
-    private const float CHARGE_SPEED = 45;
+    private const float CHARGE_SPEED = 50;
     private bool isChargeReady = true;
 
     // Movement
