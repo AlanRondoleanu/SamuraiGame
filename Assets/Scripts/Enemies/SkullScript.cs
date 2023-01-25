@@ -12,9 +12,9 @@ public class SkullScript : MonoBehaviour
     public AudioClip[] clips;
 
     public float speed = 3;
-    private float distance = 5;
+    private float distance = 4;
     private float backAwayDistance = 3;
-    private float attackDistance = 5.5f;
+    private float attackDistance = 4.5f;
 
     private const float ATTACK_COOLDOWN = 4.0f;
     private float attackTimer = ATTACK_COOLDOWN;
@@ -95,7 +95,7 @@ public class SkullScript : MonoBehaviour
                 Vector3 direction = (target - transform.position).normalized;
                 rb.velocity = (-direction * 3);
 
-                Invoke("Attack", 0.5f);
+                Invoke("Attack", 0.7f);
             }
         }
     }

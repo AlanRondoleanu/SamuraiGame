@@ -182,6 +182,7 @@ public class DemonScript : MonoBehaviour
             // Cone Attack
             if (coneAttackReady == true)
             {
+                enemy.turnTowardsDirection(player.transform.position);
                 Invoke("ConeAttack", 0.7f);
 
                 coneTimer = CONE_COOLDOWN;

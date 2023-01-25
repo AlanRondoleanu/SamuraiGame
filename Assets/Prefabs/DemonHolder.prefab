@@ -351,7 +351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3d0988908e7caf4b96025546fc101d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 175
+  health: 250
   dashCutEffect: {fileID: 3040048907759721782, guid: 8fac69b02642dab4ca926cfafb90b41b, type: 3}
   dashKillEffect: {fileID: 3119570145073471963, guid: cc2ac18ba076b4d4aa5e7388dc7e27c6, type: 3}
   healthBar: {fileID: 5214116395182101146}
@@ -525,7 +525,7 @@ Transform:
   m_GameObject: {fileID: 5214116395182101146}
   m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.4481108, z: 0}
-  m_LocalScale: {x: -1.4, y: 0.9, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5214116395220698582}

@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
         originalColor = spriteRenderer.color;
         particleSystem.Stop();
         Invoke("playerReady", 1);
+
+        changeStanceOnStart();
     }
 
     void Update()
@@ -33,23 +35,12 @@ public class PlayerController : MonoBehaviour
             // Key Events
             if (Input.GetKeyDown("q"))
             {
-                if (player.getAttackMode() == PlayerScript.AttackMode.Flow)
-                {
-                    player.ChangeAttackMode(PlayerScript.AttackMode.Rock);
-                    speed = MAX_ROCK_SPEED;
-                    particleSystem.Stop();
-                }
-                else if (player.getAttackMode() == PlayerScript.AttackMode.Rock)
-                {
-                    player.ChangeAttackMode(PlayerScript.AttackMode.Flow);
-                    speed = MAX_FLOW_SPEED;
-                    particleSystem.Play();
-                }
-
-                player.changeStance();
+                changeStance();
             }
             else if ((Input.GetMouseButtonDown(1)))
             {
+                player.showCooldown();
+
                 if (player.getAttackMode() == PlayerScript.AttackMode.Flow)
                 {
                     player.DashAttack();
@@ -158,5 +149,41 @@ public class PlayerController : MonoBehaviour
     {
         ready = true;
         animator.SetBool("Ready", true);
+    }
+
+    void changeStance()
+    {
+        if (player.getAttackMode() == PlayerScript.AttackMode.Flow)
+        {
+            player.ChangeAttackMode(PlayerScript.AttackMode.Rock);
+            speed = MAX_ROCK_SPEED;
+            particleSystem.Stop();
+        }
+        else if (player.getAttackMode() == PlayerScript.AttackMode.Rock)
+        {
+            player.ChangeAttackMode(PlayerScript.AttackMode.Flow);
+            speed = MAX_FLOW_SPEED;
+            particleSystem.Play();
+        }
+
+        player.changeStance();
+    }
+
+    void changeStanceOnStart()
+    {
+        if (player.getAttackMode() == PlayerScript.AttackMode.Rock)
+        {
+            player.ChangeAttackMode(PlayerScript.AttackMode.Rock);
+            speed = MAX_ROCK_SPEED;
+            particleSystem.Stop();
+        }
+        else if (player.getAttackMode() == PlayerScript.AttackMode.Flow)
+        {
+            player.ChangeAttackMode(PlayerScript.AttackMode.Flow);
+            speed = MAX_FLOW_SPEED;
+            particleSystem.Play();
+        }
+
+        player.changeStance();
     }
 }

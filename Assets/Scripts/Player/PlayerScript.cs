@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 { 
@@ -14,6 +16,9 @@ public class PlayerScript : MonoBehaviour
     public GameObject dashSmokeEffect;
     public GameObject healthBar;
     public CanvasRenderer bloodyScreen;
+
+    // Cooldown UI
+    public Image cooldownUI;
 
     private Camera mainCam;
     private Animator animator;
@@ -85,7 +90,15 @@ public class PlayerScript : MonoBehaviour
         bloodyScreen.SetColor(new Color(1, 1, 1, 0));
 
         GameManager.instance.setScene();
-        setHealth(GameManager.instance.getHealth());
+        setHealth(PlayerPrefs.GetFloat("Health"));
+        if (PlayerPrefs.GetInt("Stance") == 2)
+        {
+            attackMode = AttackMode.Flow;
+        }
+        else
+        {
+            attackMode = AttackMode.Rock;
+        }   
     }
 
     // Update is called once per frame
@@ -125,11 +138,21 @@ public class PlayerScript : MonoBehaviour
             if (deflectCooldownTimer <= 0.0f)
             {
                 isDeflectReady = true;
+
+                if (attackMode == AttackMode.Rock)
+                {
+                    cooldownUI.enabled = false;
+                }
             }
             dashCooldownTimer -= Time.deltaTime;
             if (dashCooldownTimer <= 0.0f)
             {
                 isDashReady = true;
+
+                if (attackMode == AttackMode.Flow)
+                {
+                    cooldownUI.enabled = false;
+                }
             }
             meleeCooldownTimer -= Time.deltaTime;
             if (meleeCooldownTimer <= 0.0f)
@@ -187,6 +210,31 @@ public class PlayerScript : MonoBehaviour
                     isDashing = false;
                     animator.SetBool("Dashing", false);
                 }
+            }
+
+            // Cooldown UI
+            Vector2 cooldownPosition = Input.mousePosition;
+            cooldownPosition.x += 20;
+            cooldownPosition.y += 10;
+            cooldownUI.transform.position = cooldownPosition;
+
+            if (attackMode == AttackMode.Rock && deflectCooldownTimer > 0)
+            {
+                // Color
+                Color cooldownColor = Color.red;
+                cooldownColor.a = 0.5f;
+                cooldownUI.color = cooldownColor;
+
+                cooldownUI.fillAmount = deflectCooldownTimer / DEFLECT_COOLDOWN;
+            }
+            else if (attackMode == AttackMode.Flow && dashCooldownTimer > 0)
+            {
+                // Color
+                Color cooldownColor = Color.cyan;
+                cooldownColor.a = 0.5f;
+                cooldownUI.color = cooldownColor;
+
+                cooldownUI.fillAmount = dashCooldownTimer / DASH_COOLDOWN;
             }
         }
     }
@@ -394,6 +442,18 @@ public class PlayerScript : MonoBehaviour
         return health;
     }
 
+    public int getStance()
+    {
+        if (attackMode == AttackMode.Rock)
+        {
+            return 1;
+        }
+        else
+        {
+            return 2;
+        }
+    }
+
     public void setHealth(float t_health)
     {
         health = t_health;
@@ -402,6 +462,11 @@ public class PlayerScript : MonoBehaviour
         float percent = (health / MAX_HEALTH) * 1;
         percent -= 1;
         healthBar.GetComponent<EnemyHealthBar>().setMask(percent, true);
+    }
+
+    public void showCooldown()
+    {
+        cooldownUI.enabled = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

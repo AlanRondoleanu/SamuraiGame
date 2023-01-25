@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
     private PlayerScript player;
     private int enemies;
     private int level = 0;
-    private float playerHealth;
     private bool nextLevelReady = false;
 
     private void Awake()
@@ -26,6 +25,9 @@ public class GameManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
+
+        PlayerPrefs.SetFloat("Health", GameData.instance.playerHealth);
+        PlayerPrefs.SetInt("Stance", 1);
     }
 
     void Start()
@@ -46,7 +48,8 @@ public class GameManager : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player" && nextLevelReady == true)
         {
-            playerHealth = player.getHealth();
+            PlayerPrefs.SetFloat("Health", player.getHealth());
+            PlayerPrefs.SetInt("Stance", player.getStance());
             SceneManager.LoadScene(level);
             nextLevelReady = false;
 
@@ -67,26 +70,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public float getHealth()
-    {
-        if (playerHealth == 0)
-        {
-            return GameData.instance.playerHealth;
-        }
-        else
-        {
-            return playerHealth;
-        } 
-    }
-
     public void StartGame()
     {
-        playerHealth = GameData.instance.playerHealth;
         SceneManager.LoadScene(3);
 
         door.gameObject.SetActive(false);
         nextLevelReady = false;
         level = 1;
+
+        PlayerPrefs.SetFloat("Health", GameData.instance.playerHealth);
+        PlayerPrefs.SetInt("Stance", 1);
 
         restartText.SetActive(false);
 
