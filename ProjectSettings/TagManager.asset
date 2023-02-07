@@ -13,6 +13,8 @@ TagManager:
   - EnemySpear
   - Collidable
   - FireBreath
+  - GameTimer
+  - Manager
   layers:
   - Default
   - TransparentFX

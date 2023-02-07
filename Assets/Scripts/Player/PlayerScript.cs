@@ -27,7 +27,6 @@ public class PlayerScript : MonoBehaviour
     // Player Vars
     private AttackMode attackMode;
     private float health;
-    private const float MAX_HEALTH = 100;
     private bool alive = true;
 
     // Melee
@@ -413,7 +412,7 @@ public class PlayerScript : MonoBehaviour
             rb.AddForce((transform.position - t_enemyPos).normalized * t_knockback);
 
             // Health Bar
-            float percent = (health / MAX_HEALTH) * 1;
+            float percent = (health / GameData.instance.playerHealth) * 1;
             percent -= 1;
             healthBar.GetComponent<EnemyHealthBar>().setMask(percent, true);
 
@@ -429,6 +428,9 @@ public class PlayerScript : MonoBehaviour
 
             // Audio
             audioSource.PlayOneShot(clips[5]);
+
+            // Sleep on hit
+            GameManager.instance.Sleep();
         }
     }
 
@@ -459,7 +461,7 @@ public class PlayerScript : MonoBehaviour
         health = t_health;
 
         // Health Bar
-        float percent = (health / MAX_HEALTH) * 1;
+        float percent = (health / GameData.instance.playerHealth) * 1;
         percent -= 1;
         healthBar.GetComponent<EnemyHealthBar>().setMask(percent, true);
     }

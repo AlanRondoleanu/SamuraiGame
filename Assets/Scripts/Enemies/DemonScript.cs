@@ -12,6 +12,7 @@ public class DemonScript : MonoBehaviour
     public AudioClip[] clips;
     public GameObject enemyBase;
     public Transform[] teleportSpots;
+    public GameObject deathExplosion;
     
     public float speed = 3;
 
@@ -20,6 +21,8 @@ public class DemonScript : MonoBehaviour
     private float attackDistance = 2.5f;
     private int teleports = 2;
     private float maxHealth;
+    private int attackCycle = 1;
+    private bool explosionUsed = false;
 
     // Movement
     private Vector3 direction;
@@ -67,34 +70,38 @@ public class DemonScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Life Timer
+        //========================================== - TIMERS - ====================================================|
+
+        // Life Timer for fire attack hitbox
         lifetimeTimer -= Time.deltaTime;
         if (lifetimeTimer <= 0 && attackHitBox.activeInHierarchy == true)
-        {
             attackHitBox.gameObject.SetActive(false);
-        }
 
-        // Cooldown Timer
+        // Cooldown timer for fire attack
         attackTimer -= Time.deltaTime;
         if (attackTimer <= 0)
-        {
             isAttackReady = true;
-        }
+
+        // Cooldown timer for random movement
         randomMovementTimer -= Time.deltaTime;
         if (randomMovementTimer <= 0)
-        {
             directionReady = true;
-        }
-        spawnTimer -= Time.deltaTime;
+
+        // Cooldown Timer for the skull spawning
+        if (attackCycle == 1)
+            spawnTimer -= Time.deltaTime;
+
         if (spawnTimer <= 0)
-        {
             spawnReady = true;
-        }
-        coneTimer -= Time.deltaTime;
+
+        // Cooldown Timer for the cone attack
+        if (attackCycle == 2)
+            coneTimer -= Time.deltaTime;
+
         if (coneTimer <= 0)
-        {
             coneAttackReady = true;
-        }
+
+        //===========================================================================================================|
 
         if (enemy.getDead() == false)
         {
@@ -143,9 +150,46 @@ public class DemonScript : MonoBehaviour
                 direction = Vector3.zero;
             }
 
+            // Spawn Skelly
+            if (spawnReady == true)
+            {
+                enemy.turnTowardsDirection(player.transform.position);
+                Invoke("SpawnSkull", 0.7f);
+
+                spawnReady = false;
+                spawnTimer = SPAWN_COOLDOWN;
+
+                animator.SetTrigger("Spawn");
+                audioSource.PlayOneShot(clips[2]);
+
+                attackCycle = 2;
+
+                // Delay fire attack
+                isAttackReady = false;
+                attackTimer = 2;
+            }
+
+            // Cone Attack
+            if (coneAttackReady == true)
+            {
+                enemy.turnTowardsDirection(player.transform.position);
+                Invoke("ConeAttack", 0.7f);
+
+                coneTimer = CONE_COOLDOWN;
+                coneAttackReady = false;
+
+                animator.SetTrigger("RangedAttack");
+
+                attackCycle = 1;
+
+                // Delay fire attack
+                isAttackReady = false;
+                attackTimer = 2;
+            }
+
             // Fire Attack
-            if (isAttackReady == true && 
-                isAttacking == false && 
+            if (isAttackReady == true &&
+                isAttacking == false &&
                 Vector2.Distance(player.transform.position, adjustedEnemyPosition) < attackDistance)
             {
                 enemy.turnTowardsDirection(player.transform.position);
@@ -168,34 +212,24 @@ public class DemonScript : MonoBehaviour
                 Invoke("Attack", 0.5f);
             }
 
-            // Spawn Skelly
-            if (spawnReady == true)
-            {
-                Invoke("SpawnSkull", 0.7f);
-
-                spawnReady = false;
-                spawnTimer = SPAWN_COOLDOWN;
-
-                animator.SetTrigger("Spawn");
-            }
-
-            // Cone Attack
-            if (coneAttackReady == true)
-            {
-                enemy.turnTowardsDirection(player.transform.position);
-                Invoke("ConeAttack", 0.7f);
-
-                coneTimer = CONE_COOLDOWN;
-                coneAttackReady = false;
-
-                animator.SetTrigger("RangedAttack");
-            }
-
             // Movement
             if (direction != Vector3.zero)
             {
                 enemyBase.transform.Translate(direction * speed * Time.deltaTime);
             }
+        }
+
+        // Explosion Effects on death
+        if (explosionUsed == false && enemy.getDead() == true)
+        {
+            GameObject explosions = Instantiate(deathExplosion);
+            explosions.transform.position = transform.position;
+
+            explosionUsed = true;
+
+            GameManager.instance.StopTimer();
+
+            audioSource.PlayOneShot(clips[1]);
         }
     }
 
@@ -245,6 +279,8 @@ public class DemonScript : MonoBehaviour
             initalAngle -= 10;
             direction = DegreeToVector2(initalAngle);
         }
+
+        audioSource.PlayOneShot(clips[3]);
     }
 
     public void teleport()
@@ -257,6 +293,8 @@ public class DemonScript : MonoBehaviour
         {
             enemyBase.transform.position = teleportSpots[1].position;
         }
+
+        audioSource.PlayOneShot(clips[4]);
     }
 
     private Vector2 DegreeToVector2(float t_degree)
@@ -273,16 +311,4 @@ public class DemonScript : MonoBehaviour
     {
         return 360 - (Mathf.Atan2(vector2.x, vector2.y) * Mathf.Rad2Deg * Mathf.Sign(vector2.x));
     }
-
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (enemy.getDead() == false && collision.gameObject.tag == "Player" && attackActive)
-    //    {
-    //        player.GetComponent<PlayerScript>().TakeDamage(transform.position, GameData.instance.skullDamage, GameData.instance.skullKnockback);
-
-    //        Vector3 direction = (target - transform.position).normalized;
-    //        rb.velocity = (-direction * ATTACK_SPEED * 0.2f);
-    //        animator.SetBool("Moving", true);
-    //    }
-    //}
 }

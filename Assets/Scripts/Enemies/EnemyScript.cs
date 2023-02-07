@@ -102,6 +102,9 @@ public class EnemyScript : MonoBehaviour
 
             // Audio
             audioSource.PlayOneShot(clips[0]);
+
+            // Sleep on hit
+            GameManager.instance.Sleep();
         }
     }
 

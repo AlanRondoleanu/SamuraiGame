@@ -393,9 +393,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clips:
+  - {fileID: 8300000, guid: 727f10250c958f3439c6738b5fb251ed, type: 3}
+  - {fileID: 8300000, guid: 17a98cb96d345234cacb72c6a3cd6f19, type: 3}
   - {fileID: 8300000, guid: 408d4ab0e6478ba4cb220ceb61291054, type: 3}
+  - {fileID: 8300000, guid: b90eb8f69a94f044e9b2bbef7109d24f, type: 3}
+  - {fileID: 8300000, guid: b2f3c7905e244014a981761621be6419, type: 3}
   enemyBase: {fileID: 8226247298127521669}
   teleportSpots: []
+  deathExplosion: {fileID: 8492752882883066595, guid: 4f1a279294ee0c545905a5bd9af16828, type: 3}
   speed: 2
   attackHitBox: {fileID: 9102045475736057236}
   enemyProjectile: {fileID: 915413843253330212, guid: 5604ae4eca4516341b87f43a3320c819, type: 3}

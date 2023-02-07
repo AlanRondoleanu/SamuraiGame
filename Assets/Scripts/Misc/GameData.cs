@@ -33,17 +33,4 @@ public class GameData : MonoBehaviour
     public float demonDamage;
     public float demonKnockback;
     public float demonRangedDamage;
-
-    private void Awake()
-    {
-        if (instance != null && instance != this)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            instance = this;
-        }
-    }
-
 }
