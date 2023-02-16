@@ -59,6 +59,9 @@ public class EnemyScript : MonoBehaviour
             agent.ResetPath();
 
             GameManager.instance.ReduceEnemies();
+
+            // Data Generation
+            GameManager.instance.data.enemies_killed++;
         }
 
         immuneLifetime -= Time.deltaTime;

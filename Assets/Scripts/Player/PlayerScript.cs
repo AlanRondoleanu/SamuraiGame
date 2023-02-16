@@ -264,6 +264,9 @@ public class PlayerScript : MonoBehaviour
 
             // Audio
             audioSource.PlayOneShot(clips[0]);
+
+            // Data Generation
+            GameManager.instance.data.melee_use++;
         }
     }
 
@@ -309,6 +312,9 @@ public class PlayerScript : MonoBehaviour
 
             // Audio
             audioSource.PlayOneShot(clips[1]);
+
+            // Data Generation
+            GameManager.instance.data.ranged_use++;
         }
     }
 

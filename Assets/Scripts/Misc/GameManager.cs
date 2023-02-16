@@ -3,11 +3,22 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
+// Server Data
+[System.Serializable]
+public class DataBase
+{
+    public string time;
+    public int ranged_use;
+    public int melee_use;
+    public int enemies_killed;
+}
+
 public class GameManager : MonoBehaviour
 {
     public GameObject door;
     public static GameManager instance;
     public AudioClip[] muisc;
+    public DataBase data;
 
     public TMP_Text timerText;
     public TMP_Text restartText;
@@ -41,6 +52,13 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+
+        string jsonData = JsonUtility.ToJson(data);
+        //StartCoroutine(ClientServer.ResetData(jsonData));
+        data.time = "";
+        data.enemies_killed = 0;
+        data.melee_use = 0;
+        data.ranged_use = 0;
     }
 
     void Update()
@@ -55,6 +73,7 @@ public class GameManager : MonoBehaviour
         if (gameOver == false)
             gameTimer += Time.deltaTime;
             timerText.text = TimeToString(gameTimer);
+            data.time = timerText.text;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
