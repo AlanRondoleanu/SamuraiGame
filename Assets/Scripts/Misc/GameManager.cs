@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
 
     public TMP_Text timerText;
     public TMP_Text restartText;
+    public TMP_Text highscoreText;
 
     private AudioSource audioSource;
     private PlayerScript player;
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour
     private bool sleep = false;
     private float gameTimer = 0;
     private bool gameOver = false;
+    private bool androidMode = false;
 
     private void Awake()
     {
@@ -59,6 +61,19 @@ public class GameManager : MonoBehaviour
         data.enemies_killed = 0;
         data.melee_use = 0;
         data.ranged_use = 0;
+
+        // Android Support
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            androidMode = true;
+        }
+        else
+        {
+            androidMode = false;
+        }
+
+        // Highscore
+        highscoreText.text = "1. " + PlayerPrefs.GetString("Highscore");
     }
 
     void Update()
@@ -174,7 +189,7 @@ public class GameManager : MonoBehaviour
     public void StopTimer()
     {
         gameOver = true;
-        //returnToMenuText.gameObject.SetActive(true);
+        PlayerPrefs.SetString("Highscore", timerText.text);
     }
 
     string TimeToString(float time)
@@ -189,6 +204,11 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(1);
         PrepareNewGame(1);
+    }
+
+    public bool getAndroidMode()
+    {
+        return androidMode;
     }
 }
 

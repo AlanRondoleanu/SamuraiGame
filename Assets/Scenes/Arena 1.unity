@@ -5615,7 +5615,7 @@ Tilemap:
       - {fileID: 1569255330, guid: ac1f8dd025ffef348a1b42523d1baec5, type: 3}
       - {fileID: -341413826, guid: ac1f8dd025ffef348a1b42523d1baec5, type: 3}
       - {fileID: -865751621, guid: ac1f8dd025ffef348a1b42523d1baec5, type: 3}
-      m_AnimationSpeed: 8.670307
+      m_AnimationSpeed: 8.092485
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 16, y: 1, z: 0}
@@ -5629,7 +5629,7 @@ Tilemap:
       - {fileID: 1569255330, guid: ac1f8dd025ffef348a1b42523d1baec5, type: 3}
       - {fileID: -341413826, guid: ac1f8dd025ffef348a1b42523d1baec5, type: 3}
       - {fileID: -865751621, guid: ac1f8dd025ffef348a1b42523d1baec5, type: 3}
-      m_AnimationSpeed: 9.942756
+      m_AnimationSpeed: 8.748867
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: -9, y: 8, z: 0}
@@ -5699,7 +5699,7 @@ Tilemap:
       - {fileID: 1569255330, guid: ac1f8dd025ffef348a1b42523d1baec5, type: 3}
       - {fileID: -341413826, guid: ac1f8dd025ffef348a1b42523d1baec5, type: 3}
       - {fileID: -865751621, guid: ac1f8dd025ffef348a1b42523d1baec5, type: 3}
-      m_AnimationSpeed: 9.580235
+      m_AnimationSpeed: 8.054366
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 6, y: 9, z: 0}
@@ -5713,7 +5713,7 @@ Tilemap:
       - {fileID: 1569255330, guid: ac1f8dd025ffef348a1b42523d1baec5, type: 3}
       - {fileID: -341413826, guid: ac1f8dd025ffef348a1b42523d1baec5, type: 3}
       - {fileID: -865751621, guid: ac1f8dd025ffef348a1b42523d1baec5, type: 3}
-      m_AnimationSpeed: 9.551454
+      m_AnimationSpeed: 8.777649
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: -14, y: 11, z: 0}
@@ -8237,6 +8237,17 @@ MonoBehaviour:
   m_Area: 1
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
+--- !u!114 &1442311803 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7847763151458548158, guid: 2788ad977aa72af4daf258bbbb77d0f6, type: 3}
+  m_PrefabInstance: {fileID: 8569960233070078310}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45977bbae16431c46a013576a1aea384, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1469328066
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12762,6 +12773,54 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 933027021289391818, guid: 2788ad977aa72af4daf258bbbb77d0f6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 9041310893260320958}
+    - target: {fileID: 933027021289391818, guid: 2788ad977aa72af4daf258bbbb77d0f6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: attackOnAndroid
+      objectReference: {fileID: 0}
+    - target: {fileID: 1395105102651719573, guid: 2788ad977aa72af4daf258bbbb77d0f6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 9041310893260320958}
+    - target: {fileID: 1395105102651719573, guid: 2788ad977aa72af4daf258bbbb77d0f6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: abillityOnAndroid
+      objectReference: {fileID: 0}
+    - target: {fileID: 2839108160755207011, guid: 2788ad977aa72af4daf258bbbb77d0f6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 9041310893260320958}
+    - target: {fileID: 2839108160755207011, guid: 2788ad977aa72af4daf258bbbb77d0f6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: stanceOnAndroid
+      objectReference: {fileID: 0}
+    - target: {fileID: 3054257169434395011, guid: 2788ad977aa72af4daf258bbbb77d0f6, type: 3}
+      propertyPath: m_SortingLayer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3054257169434395011, guid: 2788ad977aa72af4daf258bbbb77d0f6, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3054257169434395011, guid: 2788ad977aa72af4daf258bbbb77d0f6, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1658652559
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099164861119217689, guid: 2788ad977aa72af4daf258bbbb77d0f6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4285333235812945981, guid: 2788ad977aa72af4daf258bbbb77d0f6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8094898585721699498, guid: 2788ad977aa72af4daf258bbbb77d0f6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8569960233875849258, guid: 2788ad977aa72af4daf258bbbb77d0f6, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -12858,11 +12917,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 8569960233070078310}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &8569960233070078312 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5267414435296234859, guid: 2788ad977aa72af4daf258bbbb77d0f6, type: 3}
+  m_PrefabInstance: {fileID: 8569960233070078310}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9041310893260320957
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12926,5 +12990,24 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 9041310893072309511, guid: 4f5744d3d67075a47ba4aa943df676a4, type: 3}
+      propertyPath: joystick
+      value: 
+      objectReference: {fileID: 1442311803}
+    - target: {fileID: 9041310893072309511, guid: 4f5744d3d67075a47ba4aa943df676a4, type: 3}
+      propertyPath: androidControls
+      value: 
+      objectReference: {fileID: 8569960233070078312}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f5744d3d67075a47ba4aa943df676a4, type: 3}
+--- !u!114 &9041310893260320958 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9041310893072309511, guid: 4f5744d3d67075a47ba4aa943df676a4, type: 3}
+  m_PrefabInstance: {fileID: 9041310893260320957}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16287409bf092694794118eaddfb29cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

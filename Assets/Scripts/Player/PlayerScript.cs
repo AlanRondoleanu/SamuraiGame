@@ -78,6 +78,9 @@ public class PlayerScript : MonoBehaviour
     public AudioClip[] clips;
     private AudioSource audioSource;
 
+    // Android Support 
+    private FixedJoystick joystick;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -87,6 +90,7 @@ public class PlayerScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
         bloodyScreen.SetColor(new Color(1, 1, 1, 0));
+        joystick = GetComponent<PlayerController>().joystick;
 
         GameManager.instance.setScene();
         setHealth(PlayerPrefs.GetFloat("Health"));
@@ -150,7 +154,7 @@ public class PlayerScript : MonoBehaviour
 
                 if (attackMode == AttackMode.Flow)
                 {
-                    cooldownUI.enabled = false;
+                   cooldownUI.enabled = false;
                 }
             }
             meleeCooldownTimer -= Time.deltaTime;
@@ -178,10 +182,18 @@ public class PlayerScript : MonoBehaviour
                 Vector3 mousePos = Input.mousePosition;
                 mousePos.z = mainCam.transform.position.z;
                 Vector3 mouseWorldPos = mainCam.ScreenToWorldPoint(mousePos);
-
                 Vector3 direction = mouseWorldPos - transform.position;
                 direction.z = 0;
                 direction = direction.normalized;
+
+                // Android Support
+                if (GameManager.instance.getAndroidMode())
+                {
+                    direction.x = joystick.Horizontal + transform.position.x;
+                    direction.y = joystick.Vertical + transform.position.y;
+                    direction.z = 0;
+                    direction = (direction - transform.position).normalized;
+                }
 
                 // Melee
                 Vector3 desiredPos = transform.position + direction * MELEE_DISTANCE;
@@ -296,6 +308,14 @@ public class PlayerScript : MonoBehaviour
 
             // Rotation Logic for the projectile
             Vector3 mousePosition = mainCam.ScreenToWorldPoint(Input.mousePosition);
+
+            // Android Support
+            if (GameManager.instance.getAndroidMode())
+            {
+                mousePosition.x = joystick.Horizontal + transform.position.x;
+                mousePosition.y = joystick.Vertical + transform.position.y;
+            }
+
             Vector3 direction = mousePosition - transform.position;
             Vector3 rotation = transform.position - mousePosition;
             // Rotation
@@ -324,6 +344,15 @@ public class PlayerScript : MonoBehaviour
         {
             isDashing = true;
             dashDirection = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
+
+            // Android Support
+            if (GameManager.instance.getAndroidMode())
+            {
+                dashDirection.x = joystick.Horizontal + transform.position.x;
+                dashDirection.y = joystick.Vertical + transform.position.y;
+                dashDirection = (dashDirection - transform.position).normalized;
+            }
+
             dashDirection.z = 0;
             dashTimer = DASH_DURATION;
             dashCooldownTimer = DASH_COOLDOWN;

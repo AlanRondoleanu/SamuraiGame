@@ -15,6 +15,10 @@ public class PlayerController : MonoBehaviour
     private ParticleSystemRenderer psr;
     private Color originalColor;
 
+    // Android Support 
+    public FixedJoystick joystick;
+    public GameObject androidControls;
+
     void Start()
     {
         player = GetComponent<PlayerScript>();
@@ -26,6 +30,11 @@ public class PlayerController : MonoBehaviour
         Invoke("playerReady", 1);
 
         changeStanceOnStart();
+
+        if (GameManager.instance.getAndroidMode())
+        {
+            androidControls.SetActive(true);
+        }
     }
 
     void Update()
@@ -37,7 +46,7 @@ public class PlayerController : MonoBehaviour
             {
                 changeStance();
             }
-            else if ((Input.GetMouseButtonDown(1)))
+            else if ((Input.GetMouseButtonDown(1)) && !GameManager.instance.getAndroidMode())
             {
                 player.showCooldown();
 
@@ -54,7 +63,7 @@ public class PlayerController : MonoBehaviour
                     turnTowardsMouse();
                 }
             }
-            else if (Input.GetMouseButtonDown(0))
+            else if (Input.GetMouseButtonDown(0) && !GameManager.instance.getAndroidMode())
             {
                 if (player.getAttackMode() == PlayerScript.AttackMode.Flow)
                 {
@@ -76,6 +85,12 @@ public class PlayerController : MonoBehaviour
             {
                 float xMove = Input.GetAxisRaw("Horizontal");
                 float zMove = Input.GetAxisRaw("Vertical");
+
+                if (GameManager.instance.getAndroidMode())
+                {
+                    xMove = joystick.Horizontal;
+                    zMove = joystick.Vertical;
+                }
 
                 Vector2 velocity = new Vector2(xMove, zMove) * speed;
 
@@ -185,5 +200,42 @@ public class PlayerController : MonoBehaviour
         }
 
         player.changeStance();
+    }
+
+    public void abillityOnAndroid()
+    {
+        if (player.getAttackMode() == PlayerScript.AttackMode.Flow)
+        {
+            player.DashAttack();
+
+            turnTowardsMouse();
+        }
+        else if (player.getAttackMode() == PlayerScript.AttackMode.Rock)
+        {
+            player.Deflect();
+
+            turnTowardsMouse();
+        }
+    }
+
+    public void attackOnAndroid()
+    {
+        if (player.getAttackMode() == PlayerScript.AttackMode.Flow)
+        {
+            player.RangedAttack();
+
+            turnTowardsMouse();
+        }
+        else if (player.getAttackMode() == PlayerScript.AttackMode.Rock)
+        {
+            player.MeleeAttack();
+
+            turnTowardsMouse();
+        }
+    }
+
+    public void stanceOnAndroid()
+    {
+        changeStance();
     }
 }
