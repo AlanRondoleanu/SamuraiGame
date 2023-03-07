@@ -32,7 +32,7 @@ public class DemonScript : MonoBehaviour
 
     // Fire Attack
     public GameObject attackHitBox;
-    private const float ATTACK_COOLDOWN = 5.0f;
+    private const float ATTACK_COOLDOWN = 4.0f;
     private float attackTimer = ATTACK_COOLDOWN;
     private const float ATTACK_LIFETIME = 0.7f;
     private bool isAttackReady = false;
@@ -41,7 +41,7 @@ public class DemonScript : MonoBehaviour
 
     // Cone Attack
     public GameObject enemyProjectile;
-    private const float CONE_COOLDOWN = 5.5f;
+    private const float CONE_COOLDOWN = 3.5f;
     private float coneTimer = CONE_COOLDOWN;
     private bool coneAttackReady = false;
 

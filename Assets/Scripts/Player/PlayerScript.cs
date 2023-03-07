@@ -343,7 +343,7 @@ public class PlayerScript : MonoBehaviour
         if (!isDashing && isDashReady)
         {
             isDashing = true;
-            dashDirection = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
+            dashDirection = (Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position)).normalized;
 
             // Android Support
             if (GameManager.instance.getAndroidMode())
